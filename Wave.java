@@ -15,6 +15,7 @@ public class Wave extends Actor
     public void act()
     {
         // Add your action code here.
+        click();
     }
     
     GreenfootImage[] waveAnimation = new GreenfootImage[3];
@@ -23,6 +24,16 @@ public class Wave extends Actor
         for(int i = 0; i < waveAnimation.length; i++){
             waveAnimation[i] = new GreenfootImage("images/wave_idle/wave" + i  + ".png");
             waveAnimation[i].scale(waveAnimation[i].getWidth() / 4, waveAnimation[i].getHeight() / 4);
+            setImage(waveAnimation[1]);
+        }
+    }
+    
+    public void click(){
+        MyWorld world = new MyWorld();
+        if(Greenfoot.mousePressed(world)){
+            setImage(waveAnimation[2]);
+        }
+        else if(Greenfoot.mouseClicked(world)){
             setImage(waveAnimation[1]);
         }
     }
