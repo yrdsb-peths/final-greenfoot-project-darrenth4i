@@ -25,6 +25,9 @@ public class MyWorld extends World
         createSpike();
     }
     
+    //keep a list of past y-values to prevent overlapping spikes
+    int[] prevSpikeLocations = new int[3];
+    int prevY;
     /**
      * Create a spike in a random y-value on the ground
      */
@@ -36,6 +39,7 @@ public class MyWorld extends World
             Spike spike = new Spike(Greenfoot.getRandomNumber(4));
             int x = 600;
             int y = Greenfoot.getRandomNumber(400);
+
             addObject(spike, x, y);
         }
     }
