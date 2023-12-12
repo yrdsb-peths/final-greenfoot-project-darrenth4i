@@ -60,6 +60,7 @@ public class Wave extends Actor
         }
         
         //Reset wave to idle image when it is touching the floor or ceiling
+        //And prevent wave from going past the boundaries of world
         if(getY() > 390 || getY() < 10){
             setImage(waveAnimation[1]);
             if(getY() > 400){
