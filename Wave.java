@@ -1,10 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Wave here.
+ * The wave is a character the player controls
+ * holding mouse click makes the wave go up and
+ * letting go makes it go down again.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Darren 
+ * @version 12/12/2023
  */
 public class Wave extends Actor
 {
@@ -20,6 +22,9 @@ public class Wave extends Actor
     
     //Array for the wave images
     GreenfootImage[] waveAnimation = new GreenfootImage[3];
+    /**
+     * Wave constructor to scale images to smaller size
+     */
     public Wave(){
         //Construct an array of 3 images of wave
         for(int i = 0; i < waveAnimation.length; i++){
