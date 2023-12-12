@@ -38,15 +38,26 @@ public class Wave extends Actor
      * Method to change the image and location of the wave icon based on
      * the Y-coordinate and if mouse is being pressed
      */
+    boolean pressed; //Variable to determine if mouse is being held or not
     public void click(){
         MyWorld world = new MyWorld();
-        //When player is clicking, wave moves up
         if(Greenfoot.mousePressed(world)){
-            setImage(waveAnimation[2]); //Wave icon up image
+            pressed = true;
         } 
-        //When player lets go, wave moves down
         else if(Greenfoot.mouseClicked(world)){
-            setImage(waveAnimation[1]); //Wave icon down image
+            pressed = false;
         }
+        
+        //When player is clicking, wave moves up
+        if(pressed){
+            setImage(waveAnimation[2]); //Wave icon up image
+            setLocation(getX(), getY() - 5);
+        }
+        //When player lets go, wave moves down
+        else{
+            setImage(waveAnimation[0]); //Wave icon down image
+            setLocation(getX(), getY() + 5);
+        }
+    
     }
 }
