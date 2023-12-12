@@ -51,13 +51,24 @@ public class Wave extends Actor
         //When player is clicking, wave moves up
         if(pressed){
             setImage(waveAnimation[2]); //Wave icon up image
-            setLocation(getX(), getY() - 5);
+            setLocation(getX(), getY() - 4);
         }
         //When player lets go, wave moves down
         else{
             setImage(waveAnimation[0]); //Wave icon down image
-            setLocation(getX(), getY() + 5);
+            setLocation(getX(), getY() + 4);
         }
-    
+        
+        //Reset wave to idle image when it is touching the floor or ceiling
+        if(getY() > 390 || getY() < 10){
+            setImage(waveAnimation[1]);
+            if(getY() > 400){
+                setLocation(getX(), 400);
+            }
+            if(getY() < 0){
+                setLocation(getX(), 0);
+            }
+        }
+
     }
 }
