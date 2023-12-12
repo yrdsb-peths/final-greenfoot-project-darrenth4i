@@ -18,6 +18,8 @@ public class Wave extends Actor
     {
         // Add your action code here.
         click();
+        
+        hitSpike();
     }
     
     //Array for the wave images
@@ -38,15 +40,52 @@ public class Wave extends Actor
      * Method to change the image and location of the wave icon based on
      * the Y-coordinate and if mouse is being pressed
      */
+    boolean pressed; //Variable to determine if mouse is being held or not
     public void click(){
         MyWorld world = new MyWorld();
-        //When player is clicking, wave moves up
         if(Greenfoot.mousePressed(world)){
-            setImage(waveAnimation[2]); //Wave icon up image
+            pressed = true;
         } 
-        //When player lets go, wave moves down
         else if(Greenfoot.mouseClicked(world)){
-            setImage(waveAnimation[1]); //Wave icon down image
+            pressed = false;
+        }
+        
+        //When player is clicking, wave moves up
+        if(pressed){
+            setImage(waveAnimation[2]); //Wave icon up image
+            setLocation(getX(), getY() - 4);
+        }
+        //When player lets go, wave moves down
+        else{
+            setImage(waveAnimation[0]); //Wave icon down image
+            setLocation(getX(), getY() + 4);
+        }
+        
+        //Reset wave to idle image when it is touching the floor or ceiling
+        //And prevent wave from going past the boundaries of world
+        if(getY() > 390 || getY() < 10){
+            setImage(waveAnimation[1]);
+            if(getY() > 400){
+                setLocation(getX(), 400);
+            }
+            if(getY() < 0){
+                setLocation(getX(), 0);
+            }
+        }
+    }
+    
+    /**
+     * Method that occurs when wave touches a spike)
+     */
+    public void hitSpike(){
+        //Create an object for the spike that touches the elephant
+        //Spike spike = (Spike)getOneIntersectingObject(Spike.class);
+        //Only gameOver if the spike is at its final imageIndex
+        if(isTouching(Spike.class)){ 
+            removeTouching(Spike.class);
+            MyWorld world = (MyWorld) getWorld();
+            //Run gameover if elephant touches spike
+            world.createSpike();
         }
     }
 }
