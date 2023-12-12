@@ -80,11 +80,10 @@ public class Wave extends Actor
     public void hitSpike(){
         //Create an object for the spike that touches the elephant
         //Spike spike = (Spike)getOneIntersectingObject(Spike.class);
-        //Only gameOver if the spike is at its final imageIndex
+        //Remove spike object when wave touches it
         if(isTouching(Spike.class)){ 
             removeTouching(Spike.class);
             MyWorld world = (MyWorld) getWorld();
-            //Run gameover if elephant touches spike
             world.createSpike();
         }
     }

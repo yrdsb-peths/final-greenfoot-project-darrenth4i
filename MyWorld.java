@@ -32,8 +32,8 @@ public class MyWorld extends World
         //Remove all previous instances of spike so it doesn't stack infinitely
         removeObjects(getObjects(Spike.class)); 
         //Set the amount of spikes that can appear at once
-        for(int i = 0; i<1; i++){
-            Spike spike = new Spike();
+        for(int i = 0; i<3; i++){
+            Spike spike = new Spike(Greenfoot.getRandomNumber(4));
             int x = 600;
             int y = Greenfoot.getRandomNumber(400);
             addObject(spike, x, y);
