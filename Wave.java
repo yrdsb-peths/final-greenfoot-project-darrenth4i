@@ -44,7 +44,7 @@ public class Wave extends Actor
         if(Greenfoot.mousePressed(world)){
             pressed = true;
         } 
-        else if(Greenfoot.mouseClicked(world)){
+        if(Greenfoot.mouseClicked(world)){
             pressed = false;
         }
         

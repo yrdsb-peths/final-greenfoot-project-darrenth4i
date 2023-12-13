@@ -36,7 +36,6 @@ public class MyWorld extends World
     int maxSpikes; //maximum amount of spikes spawning on screen
     int limitSpikes = maxSpikes + 3;
     public void createSpike(){
-        
         //Set the amount of spikes that can appear at once
         for(int i = 0; i<limitSpikes; i++){
             Spike spike = new Spike(Greenfoot.getRandomNumber(4));
@@ -62,7 +61,7 @@ public class MyWorld extends World
         //Increase amount of spikes or speed of apple falling every 5 points
         if(score % 5 == 0)
         {
-            maxSpikes++;
+            limitSpikes++;
         }
     }
 }
