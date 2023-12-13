@@ -33,8 +33,7 @@ public class MyWorld extends World
     /**
      * Create a spike in a random y-value on the ground
      */
-    int maxSpikes; //maximum amount of spikes spawning on screen
-    int limitSpikes = maxSpikes + 3;
+    int limitSpikes = 3; //maximum amount of spikes spawning on screen
     public void createSpike(){
         //Set the amount of spikes that can appear at once
         for(int i = 0; i<limitSpikes; i++){
