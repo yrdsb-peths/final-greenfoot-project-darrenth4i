@@ -44,6 +44,7 @@ public class Spike extends Actor
         if(getX() < 0){
             MyWorld world = (MyWorld) getWorld();
             world.removeObject(this);
+            world.limitSpikes++;
             world.createSpike();
             world.increaseScore();
         }

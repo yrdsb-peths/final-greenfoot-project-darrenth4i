@@ -33,16 +33,18 @@ public class MyWorld extends World
     /**
      * Create a spike in a random y-value on the ground
      */
+    int maxSpikes; //maximum amount of spikes spawning on screen
+    int limitSpikes = maxSpikes + 3;
     public void createSpike(){
-        //Remove all previous instances of spike so it doesn't stack infinitely
-        removeObjects(getObjects(Spike.class)); 
+        
         //Set the amount of spikes that can appear at once
-        for(int i = 0; i<maxSpikes + 3; i++){
+        for(int i = 0; i<limitSpikes; i++){
             Spike spike = new Spike(Greenfoot.getRandomNumber(4));
             int x = Greenfoot.getRandomNumber(200);
             int y = Greenfoot.getRandomNumber(400);
 
             addObject(spike, x + 400, y);
+            limitSpikes--;
         }
     }
     
@@ -50,7 +52,6 @@ public class MyWorld extends World
      * Method to display score
      */
     int score;
-    int maxSpikes; //maximum amount of spikes spawning on screen
     /**
      * Method to increase the score by 1
      */
