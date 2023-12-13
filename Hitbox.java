@@ -18,14 +18,16 @@ public class Hitbox extends Actor
         // Add your action code here.
         followWave();
         hitSpike();
+        toggleHitbox();
     }
     
     /**
      * Constructor for hitbox
      */
+    GreenfootImage hitbox = new GreenfootImage("images/waveHitbox.png");
     public Hitbox(){
-        GreenfootImage hitbox = new GreenfootImage("images/waveHitbox.png");
         hitbox.scale(hitbox.getWidth() / 10, hitbox.getHeight() / 15);
+        hitbox.setTransparency(0); //make hitbox invisible
         setImage(hitbox);
     }
     
@@ -53,6 +55,18 @@ public class Hitbox extends Actor
             removeTouching(Spike.class);
             MyWorld world = (MyWorld) getWorld();
             world.createSpike();
+        }
+    }
+    
+    /**
+     * Method to toggle hitbox by pressing Shift
+     */
+    public void toggleHitbox(){
+        if(Greenfoot.isKeyDown("Shift")){
+            hitbox.setTransparency(255);
+        }
+        else{
+            hitbox.setTransparency(0);
         }
     }
 }
