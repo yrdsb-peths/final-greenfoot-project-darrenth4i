@@ -14,12 +14,12 @@ public class Spike extends Actor
     /**
      * Spike constructor to scale images to smaller size
      */
-    public Spike(){
+    public Spike(int num){
         //Construct an array of 4 images of spike and scale down in size
         for(int i = 0; i < spikeImages.length; i++){
             spikeImages[i] = new GreenfootImage("images/spike/spike" + spikeSuffix[i]  + ".png");
             spikeImages[i].scale(spikeImages[i].getWidth() / 4, spikeImages[i].getHeight() / 4);
-            setImage(spikeImages[0]); //Default spike image
+            setImage(spikeImages[num]); //Random spike image
         }
     }
     

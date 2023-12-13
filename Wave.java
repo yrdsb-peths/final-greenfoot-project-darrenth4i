@@ -18,8 +18,6 @@ public class Wave extends Actor
     {
         // Add your action code here.
         click();
-        
-        hitSpike();
     }
     
     //Array for the wave images
@@ -71,21 +69,6 @@ public class Wave extends Actor
             if(getY() < 0){
                 setLocation(getX(), 0);
             }
-        }
-    }
-    
-    /**
-     * Method that occurs when wave touches a spike)
-     */
-    public void hitSpike(){
-        //Create an object for the spike that touches the elephant
-        //Spike spike = (Spike)getOneIntersectingObject(Spike.class);
-        //Only gameOver if the spike is at its final imageIndex
-        if(isTouching(Spike.class)){ 
-            removeTouching(Spike.class);
-            MyWorld world = (MyWorld) getWorld();
-            //Run gameover if elephant touches spike
-            world.createSpike();
         }
     }
 }
