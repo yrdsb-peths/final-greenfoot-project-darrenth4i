@@ -8,10 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-
+    Label scoreLabel; //Score label object
     /**
-     * Constructor for objects of class MyWorld.
-     * 
+     * Constructor for objects of class MyWorld
      */
     public MyWorld()
     {    
@@ -25,6 +24,10 @@ public class MyWorld extends World
         addObject(hitbox, 200, 300);
 
         createSpike();
+        
+        //Label to show the score
+        scoreLabel = new Label("Score: " + 0, 40);
+        addObject(scoreLabel, 85, 30);
     }
     
     /**
@@ -34,12 +37,31 @@ public class MyWorld extends World
         //Remove all previous instances of spike so it doesn't stack infinitely
         removeObjects(getObjects(Spike.class)); 
         //Set the amount of spikes that can appear at once
-        for(int i = 0; i<3; i++){
+        for(int i = 0; i<maxSpikes + 3; i++){
             Spike spike = new Spike(Greenfoot.getRandomNumber(4));
             int x = Greenfoot.getRandomNumber(200);
             int y = Greenfoot.getRandomNumber(400);
 
             addObject(spike, x + 400, y);
+        }
+    }
+    
+    /**
+     * Method to display score
+     */
+    int score;
+    int maxSpikes; //maximum amount of spikes spawning on screen
+    /**
+     * Method to increase the score by 1
+     */
+    public void increaseScore(){
+        score++;
+        scoreLabel.setValue("Score: " + score);
+        
+        //Increase amount of spikes or speed of apple falling every 5 points
+        if(score % 5 == 0)
+        {
+            maxSpikes++;
         }
     }
 }
