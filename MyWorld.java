@@ -19,9 +19,11 @@ public class MyWorld extends World
         super(600, 400, 1, false);
         
         Wave wave = new Wave();
-        
         addObject(wave, 200, 300);
         
+        Hitbox hitbox = new Hitbox();
+        addObject(hitbox, 200, 300);
+
         createSpike();
     }
     
