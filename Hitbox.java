@@ -54,6 +54,9 @@ public class Hitbox extends Actor
         if(isTouching(Spike.class)){ 
             removeTouching(Spike.class);
             MyWorld world = (MyWorld) getWorld();
+            world.removeObjects(world.getObjects(Spike.class));
+            world.score = 0;
+            world.limitSpikes = 3;
             world.createSpike();
         }
     }

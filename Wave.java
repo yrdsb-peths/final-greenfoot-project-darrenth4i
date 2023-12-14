@@ -39,12 +39,13 @@ public class Wave extends Actor
      * the Y-coordinate and if mouse is being pressed
      */
     boolean pressed; //Variable to determine if mouse is being held or not
+    MyWorld world = (MyWorld) getWorld();
     public void click(){
-        MyWorld world = new MyWorld();
+        
         if(Greenfoot.mousePressed(world)){
             pressed = true;
         } 
-        else if(Greenfoot.mouseClicked(world)){
+        if(Greenfoot.mouseClicked(world)){
             pressed = false;
         }
         
@@ -54,7 +55,7 @@ public class Wave extends Actor
             setLocation(getX(), getY() - 4);
         }
         //When player lets go, wave moves down
-        else{
+        if(!pressed){
             setImage(waveAnimation[0]); //Wave icon down image
             setLocation(getX(), getY() + 4);
         }
