@@ -57,6 +57,7 @@ public class Hitbox extends Actor
             world.removeObjects(world.getObjects(Spike.class));
             world.score = 0;
             world.limitSpikes = 3;
+            world.currentSpikes = 0;
             world.createSpike();
         }
     }

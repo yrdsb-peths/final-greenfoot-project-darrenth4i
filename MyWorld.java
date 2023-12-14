@@ -31,19 +31,24 @@ public class MyWorld extends World
         addObject(scoreLabel, 85, 30);
     }
     
+    public void act(){
+        createSpike();
+    }
+    
     /**
      * Create a spike in a random y-value on the ground
      */
     int limitSpikes = 3; //maximum amount of spikes spawning on screen
+    int currentSpikes = 0; //number of spikes on screen
     public void createSpike(){
         //Set the amount of spikes that can appear at once
-        for(int i = 0; i<limitSpikes; i++){
+        if(currentSpikes < limitSpikes){
             Spike spike = new Spike(Greenfoot.getRandomNumber(4));
             int x = Greenfoot.getRandomNumber(200);
             int y = Greenfoot.getRandomNumber(400);
 
             addObject(spike, x + 400, y);
-            limitSpikes--;
+            currentSpikes++;
         }
     }
     
@@ -56,10 +61,10 @@ public class MyWorld extends World
      */
     public void increaseScore(){
         score++;
-        scoreLabel.setValue("Score: " + score);
+        scoreLabel.setValue("Score: " + score); //update score
         
-        //Increase amount of spikes or speed of apple falling every 5 points
-        if(score % 5 == 0)
+        //Increase amount of spikes every 5 points
+        if(limitSpikes < 10 && score % 5 == 0)
         {
             limitSpikes++;
         }
