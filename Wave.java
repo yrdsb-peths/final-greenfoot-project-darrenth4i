@@ -54,7 +54,7 @@ public class Wave extends Actor
             setLocation(getX(), getY() - 4);
         }
         //When player lets go, wave moves down
-        else{
+        if(!pressed){
             setImage(waveAnimation[0]); //Wave icon down image
             setLocation(getX(), getY() + 4);
         }

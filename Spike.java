@@ -9,8 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Spike extends Actor
 {
-    GreenfootImage[] spikeImages = new GreenfootImage[4];
-    String[] spikeSuffix = {"Up", "Down", "Left", "Right"}; 
+    static GreenfootImage[] spikeImages = new GreenfootImage[4];
+    static String[] spikeSuffix = {"Up", "Down", "Left", "Right"}; 
+    
     /**
      * Spike constructor to scale images to smaller size
      */
