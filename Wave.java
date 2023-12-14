@@ -39,8 +39,9 @@ public class Wave extends Actor
      * the Y-coordinate and if mouse is being pressed
      */
     boolean pressed; //Variable to determine if mouse is being held or not
+    MyWorld world = (MyWorld) getWorld();
     public void click(){
-        MyWorld world = new MyWorld();
+        
         if(Greenfoot.mousePressed(world)){
             pressed = true;
         } 
