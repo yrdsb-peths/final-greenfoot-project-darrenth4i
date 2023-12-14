@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     Label scoreLabel; //Score label object
+    int waveStartPos = 100;
     /**
      * Constructor for objects of class MyWorld
      */
@@ -18,10 +19,10 @@ public class MyWorld extends World
         super(600, 400, 1, false);
         
         Wave wave = new Wave();
-        addObject(wave, 200, 300);
+        addObject(wave, waveStartPos, 300);
         
         Hitbox hitbox = new Hitbox();
-        addObject(hitbox, 200, 300);
+        addObject(hitbox, waveStartPos, 300);
 
         createSpike();
         
