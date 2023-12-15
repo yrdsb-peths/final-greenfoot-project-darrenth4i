@@ -32,6 +32,7 @@ public class Spike extends Actor
     {
         // Add your action code here.
         scroll();
+        remove();
     }
     
     /**
