@@ -2,7 +2,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Another type of obstacle the player must avoid. Square shape
- * instead of a triangular spike
+ * instead of a triangular spike and only spawns on the ground
+ * or ceiling
  * 
  * @author Darren
  * @version 12/15/2023

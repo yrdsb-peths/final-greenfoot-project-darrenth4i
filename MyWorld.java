@@ -25,6 +25,7 @@ public class MyWorld extends World
         addObject(hitbox, waveStartPos, 300);
 
         createSpike();
+        createBlock();
         
         //Label to show the score
         scoreLabel = new Label("Score: " + 0, 40);
@@ -49,6 +50,36 @@ public class MyWorld extends World
 
             addObject(spike, x + 400, y);
             currentSpikes++;
+        }
+    }
+    
+    /**
+     * Method to create a block tower from either the ceiling or floor
+     */
+    public void createBlock(){
+        int x = Greenfoot.getRandomNumber(200);
+        int y = Greenfoot.getRandomNumber(2); //Choose either 0 or 1
+        int towerHeight = Greenfoot.getRandomNumber(5) + 1;
+        
+        //0 * 400 = ceiling or 1 * 400 = ground
+        int ySpawn = y * 400;
+        
+        for(int i = 0; i<towerHeight; i++){
+            Block block = new Block();
+            //Image height
+            int blockHeight = block.getImage().getHeight();
+            //Block spawn comes from middle of block so this offset fixes
+            //the block spawning past the ceiling/ground, depending on + or -
+            int offset = blockHeight / 2; 
+            
+            //Spawning on ceiling
+            if(ySpawn == 0){
+                addObject(block, x + 400, ySpawn + offset + (i * blockHeight));
+            }
+            //Spawning on ground
+            else{
+                addObject(block, x + 400, ySpawn - offset - (i * blockHeight));
+            }
         }
     }
     
