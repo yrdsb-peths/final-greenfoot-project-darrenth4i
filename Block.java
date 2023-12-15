@@ -18,6 +18,7 @@ public class Block extends Spike
     {
         // Add your action code here.
         super.scroll();
+        remove();
     }
     
     public Block(){
@@ -25,5 +26,19 @@ public class Block extends Spike
         GreenfootImage blockImage = new GreenfootImage("images/block.png");
         blockImage.scale(blockImage.getWidth() / 4, blockImage.getHeight() / 4);
         setImage(blockImage); 
+    }
+    
+    /**
+     * Overloaded method to remove the block once it goes off of the screen
+     */
+    public void remove(){
+        //Remove block object when it is offscreen and create new block
+        if(getX() < 0){
+            MyWorld world = (MyWorld) getWorld();
+            world.removeObject(this);
+            world.currentBlocks--;
+            world.createBlock();
+            world.increaseScore();
+        }
     }
 }
