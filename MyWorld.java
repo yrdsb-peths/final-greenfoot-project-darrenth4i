@@ -43,7 +43,7 @@ public class MyWorld extends World
     public void createSpike(){
         //Set the amount of spikes that can appear at once
         if(currentSpikes < limitSpikes){
-            Spike spike = new Spike(Greenfoot.getRandomNumber(4));
+            Spike spike = new Spike();
             int x = Greenfoot.getRandomNumber(200);
             int y = Greenfoot.getRandomNumber(400);
 
