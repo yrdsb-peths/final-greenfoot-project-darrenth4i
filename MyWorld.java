@@ -33,12 +33,17 @@ public class MyWorld extends World
     }
     
     SimpleTimer spawnTimer = new SimpleTimer();
+    int spawnCD = 500; //default block spawning cooldown
+    /**
+     * Method to spawn in obstacles constantly
+     */
     public void act(){
-        if(spawnTimer.millisElapsed() < 500){
+        createSpike();
+        //Only create a block tower once spawn cooldown is over
+        if(spawnTimer.millisElapsed() < spawnCD){
             return;
         }
         spawnTimer.mark();
-        createSpike();
         createBlock();
     }
     
@@ -106,10 +111,13 @@ public class MyWorld extends World
         score++;
         scoreLabel.setValue("Score: " + score); //update score
         
-        //Increase amount of spikes every 5 points
+        //Increase amount of spikes every 5 points and reduce
+        //block spawning cooldown by 10 ms
         if(limitSpikes < 10 && score % 5 == 0)
         {
             limitSpikes++;
+            limitBlocks++;
+            spawnCD -= 10;
         }
     }
 }
