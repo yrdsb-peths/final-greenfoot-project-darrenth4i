@@ -32,7 +32,12 @@ public class MyWorld extends World
         addObject(scoreLabel, 85, 30);
     }
     
+    SimpleTimer spawnTimer = new SimpleTimer();
     public void act(){
+        if(spawnTimer.millisElapsed() < 500){
+            return;
+        }
+        spawnTimer.mark();
         createSpike();
         createBlock();
     }

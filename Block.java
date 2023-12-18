@@ -33,12 +33,10 @@ public class Block extends Spike
      */
     public void remove(){
         //Remove block object when it is offscreen and create new block
+        MyWorld world = (MyWorld) getWorld();
         if(getX() < 0){
-            MyWorld world = (MyWorld) getWorld();
-            world.removeObject(this);
             world.currentBlocks--;
-            world.createBlock();
-            world.increaseScore();
+            world.removeObject(this);
         }
     }
 }
