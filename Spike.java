@@ -32,6 +32,7 @@ public class Spike extends Actor
     {
         // Add your action code here.
         scroll();
+        remove();
     }
     
     /**
@@ -40,7 +41,12 @@ public class Spike extends Actor
      */
     public void scroll(){
         setLocation(getX() - 5, getY()); //Moves 5 units to the left 
-        
+    }
+    
+    /**
+     * Method to remove the spike once it goes off of the screen
+     */
+    public void remove(){
         //Remove spike object when it is offscreen and create new spike
         if(getX() < 0){
             MyWorld world = (MyWorld) getWorld();
