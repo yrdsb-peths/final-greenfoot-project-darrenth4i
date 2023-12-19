@@ -59,7 +59,7 @@ public class MyWorld extends World
             int x = Greenfoot.getRandomNumber(200);
             int y = Greenfoot.getRandomNumber(400);
 
-            addObject(spike, x + 400, y);
+            addObject(spike, x + 600, y);
             currentSpikes++;
         }
     }
@@ -89,11 +89,11 @@ public class MyWorld extends World
                 
                 //Spawning on ceiling
                 if(ySpawn == 0){
-                    addObject(block, x + 400, ySpawn + offset + (i * blockHeight));
+                    addObject(block, x + 600, ySpawn + offset + (i * blockHeight));
                 }
                 //Spawning on ground
                 else{
-                    addObject(block, x + 400, ySpawn - offset - (i * blockHeight));
+                    addObject(block, x + 600, ySpawn - offset - (i * blockHeight));
                 }
             }
             currentBlocks++;
