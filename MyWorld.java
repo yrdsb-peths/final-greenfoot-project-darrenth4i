@@ -24,7 +24,7 @@ public class MyWorld extends World
         Hitbox hitbox = new Hitbox();
         addObject(hitbox, waveStartPos, 300);
 
-        createSpike();
+        //createSpike();
         createBlock();
         
         //Label to show the score
@@ -33,12 +33,12 @@ public class MyWorld extends World
     }
     
     SimpleTimer spawnTimer = new SimpleTimer();
-    int spawnCD = 500; //default block spawning cooldown
+    int spawnCD = 200; //default block spawning cooldown
     /**
      * Method to spawn in obstacles constantly
      */
     public void act(){
-        createSpike();
+        //createSpike();
         //Only create a block tower once spawn cooldown is over
         if(spawnTimer.millisElapsed() < spawnCD){
             return;
@@ -103,19 +103,19 @@ public class MyWorld extends World
                 block = new Block();
                 //Spawning on ceiling
                 if(ySpawn == 0){
-                    addObject(block, x + 600, ySpawn + offset + (i * blockHeight));
+                    addObject(block, 600, ySpawn + offset + (i * blockHeight));
                 }
                 //Spawning on ground
                 else{
-                    addObject(block, x + 600, ySpawn - offset - (i * blockHeight));
+                    addObject(block, 600, ySpawn - offset - (i * blockHeight));
                 }
             }
             //Create a spike on top/below the block tower
             if(ySpawn == 0){
-                createSpike(x + 600, ySpawn + offset + (towerHeight * blockHeight), true);
+                createSpike(600, ySpawn + offset + (towerHeight * blockHeight), true);
             }
             else{
-                createSpike(x + 600, ySpawn - offset - (towerHeight * blockHeight), false);
+                createSpike(600, ySpawn - offset - (towerHeight * blockHeight), false);
             }
             currentBlocks++;
         }
