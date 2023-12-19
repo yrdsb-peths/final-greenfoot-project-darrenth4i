@@ -54,6 +54,7 @@ public class Hitbox extends Actor
         if(isTouching(Spike.class)){ 
             removeTouching(Spike.class);
             MyWorld world = (MyWorld) getWorld();
+            //Remove objects and reset variables like score/spawn cooldown
             world.removeObjects(world.getObjects(Spike.class));
             world.removeObjects(world.getObjects(Block.class));
             world.score = 0;

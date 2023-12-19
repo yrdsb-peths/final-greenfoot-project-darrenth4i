@@ -24,7 +24,6 @@ public class MyWorld extends World
         Hitbox hitbox = new Hitbox();
         addObject(hitbox, waveStartPos, 300);
 
-        //createSpike();
         createBlock();
         
         //Label to show the score
@@ -38,7 +37,6 @@ public class MyWorld extends World
      * Method to spawn in obstacles constantly
      */
     public void act(){
-        //createSpike();
         //Only create a block tower once spawn cooldown is over
         if(spawnTimer.millisElapsed() < spawnCD){
             return;
