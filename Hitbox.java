@@ -55,7 +55,9 @@ public class Hitbox extends Actor
             removeTouching(Spike.class);
             MyWorld world = (MyWorld) getWorld();
             world.removeObjects(world.getObjects(Spike.class));
+            world.removeObjects(world.getObjects(Block.class));
             world.score = 0;
+            world.spawnCD = 200;
             world.scoreLabel.setValue("Score: " + world.score); //update score
             world.limitSpikes = 3;
             world.currentSpikes = 0;
