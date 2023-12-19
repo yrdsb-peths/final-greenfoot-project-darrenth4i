@@ -50,9 +50,7 @@ public class Spike extends Actor
         //Remove spike object when it is offscreen and create new spike
         if(getX() < 0){
             MyWorld world = (MyWorld) getWorld();
-            world.removeObject(this);
-            world.currentSpikes--;
-            world.createSpike();
+            setLocation(Greenfoot.getRandomNumber(200) + 400, Greenfoot.getRandomNumber(400));
             world.increaseScore();
         }
     }
