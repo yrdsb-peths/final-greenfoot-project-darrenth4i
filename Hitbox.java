@@ -61,7 +61,6 @@ public class Hitbox extends Actor
             world.scoreLabel.setValue("Score: " + world.score); //update score
             world.limitSpikes = 3;
             world.currentSpikes = 0;
-            world.createSpike();
         }
     }
     
