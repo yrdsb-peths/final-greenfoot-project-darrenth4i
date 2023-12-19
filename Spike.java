@@ -25,6 +25,18 @@ public class Spike extends Actor
     }
     
     /**
+     * Overloaded constructor to set specific spike image and scale images to smaller size
+     */
+    public Spike(int imageIndex){
+        //Construct an array of 4 images of spike and scale down in size
+        for(int i = 0; i < spikeImages.length; i++){
+            spikeImages[i] = new GreenfootImage("images/spike/spike" + spikeSuffix[i]  + ".png");
+            spikeImages[i].scale(spikeImages[i].getWidth() / 4, spikeImages[i].getHeight() / 4);
+            setImage(spikeImages[imageIndex]); //Specific spike image
+        }
+    }
+    
+    /**
      * Act - do whatever the Spike wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
