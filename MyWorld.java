@@ -24,7 +24,6 @@ public class MyWorld extends World
         Hitbox hitbox = new Hitbox();
         addObject(hitbox, waveStartPos, 300);
 
-        createSpike();
         createBlock();
         
         //Label to show the score
@@ -33,12 +32,11 @@ public class MyWorld extends World
     }
     
     SimpleTimer spawnTimer = new SimpleTimer();
-    int spawnCD = 500; //default block spawning cooldown
+    int spawnCD = 200; //default block spawning cooldown
     /**
      * Method to spawn in obstacles constantly
      */
     public void act(){
-        createSpike();
         //Only create a block tower once spawn cooldown is over
         if(spawnTimer.millisElapsed() < spawnCD){
             return;
@@ -58,11 +56,25 @@ public class MyWorld extends World
             Spike spike = new Spike();
             int x = Greenfoot.getRandomNumber(200);
             int y = Greenfoot.getRandomNumber(400);
-
-            addObject(spike, x + 400, y);
-            currentSpikes++;
+    
+            addObject(spike, x + 600, y);
         }
+        currentSpikes++;
     }
+    
+    /**
+     * Overloaded method to create a spike at a specific coordinate
+     */
+    public void createSpike(int x, int y, boolean facingDown){
+        //Set the amount of spikes that can appear at once
+        Spike spike = new Spike(1);
+        if(!facingDown){
+            spike = new Spike(0);
+        }
+        addObject(spike, x, y);
+        
+        currentSpikes++;
+    }    
     
     /**
      * Method to create a block tower from either the ceiling or floor
@@ -77,24 +89,31 @@ public class MyWorld extends World
             
             //0 * 400 = ceiling or 1 * 400 = ground
             int ySpawn = y * 400;
+            Block block = new Block();
+            //Image height
+            int blockHeight = block.getImage().getHeight();
+            //Block spawn comes from middle of block so this offset fixes
+            //the block spawning past the ceiling/ground, depending on + or -
+            int offset = blockHeight / 2; 
             
             //Block tower creation
             for(int i = 0; i<towerHeight; i++){
-                Block block = new Block();
-                //Image height
-                int blockHeight = block.getImage().getHeight();
-                //Block spawn comes from middle of block so this offset fixes
-                //the block spawning past the ceiling/ground, depending on + or -
-                int offset = blockHeight / 2; 
-                
+                block = new Block();
                 //Spawning on ceiling
                 if(ySpawn == 0){
-                    addObject(block, x + 400, ySpawn + offset + (i * blockHeight));
+                    addObject(block, 600, ySpawn + offset + (i * blockHeight));
                 }
                 //Spawning on ground
                 else{
-                    addObject(block, x + 400, ySpawn - offset - (i * blockHeight));
+                    addObject(block, 600, ySpawn - offset - (i * blockHeight));
                 }
+            }
+            //Create a spike on top/below the block tower
+            if(ySpawn == 0){
+                createSpike(600, ySpawn + offset + (towerHeight * blockHeight), true);
+            }
+            else{
+                createSpike(600, ySpawn - offset - (towerHeight * blockHeight), false);
             }
             currentBlocks++;
         }
@@ -113,7 +132,7 @@ public class MyWorld extends World
         
         //Increase amount of spikes every 5 points and reduce
         //block spawning cooldown by 10 ms
-        if(limitSpikes < 10 && score % 5 == 0)
+        if(limitSpikes < 13 && score % 5 == 0)
         {
             limitSpikes++;
             limitBlocks++;
