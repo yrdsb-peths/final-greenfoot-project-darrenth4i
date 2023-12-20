@@ -132,7 +132,7 @@ public class MyWorld extends World
         
         //Increase amount of spikes every 5 points and reduce
         //block spawning cooldown by 10 ms
-        if(limitSpikes < 10 && score % 5 == 0)
+        if(limitSpikes < 13 && score % 5 == 0)
         {
             limitSpikes++;
             limitBlocks++;
