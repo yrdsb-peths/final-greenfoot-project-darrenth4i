@@ -14,19 +14,23 @@ public class Wave extends Actor
      * Act - do whatever the Wave wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    int wavePosX; //Current wave x position
+    int wavePosY; //Current wave y position
     public void act()
     {
         // Add your action code here.
         click();
+        wavePosX = getX();
+        wavePosY = getY();
     }
     
     //Array for the wave images
     GreenfootImage[] waveAnimation = new GreenfootImage[3];
     /**
-     * Wave constructor to scale images to smaller size
+     * Wave constructor to scale images to smaller size 
      */
     public Wave(){
-        //Construct an array of 3 images of wave
+        //Construct an array of 3 images of wave and wave trail
         for(int i = 0; i < waveAnimation.length; i++){
             waveAnimation[i] = new GreenfootImage("images/wave_idle/wave" + i  + ".png");
             waveAnimation[i].scale(waveAnimation[i].getWidth() / 4, waveAnimation[i].getHeight() / 4);
@@ -53,6 +57,7 @@ public class Wave extends Actor
         if(pressed){
             setImage(waveAnimation[2]); //Wave icon up image
             setLocation(getX(), getY() - 4);
+            
         }
         //When player lets go, wave moves down
         if(!pressed){
