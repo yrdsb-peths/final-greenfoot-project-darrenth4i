@@ -24,7 +24,7 @@ public class Trail extends Wave
     public Trail(int imageIndex){
         for(int i = 0; i < trailAnimation.length; i++){
             trailAnimation[i] = new GreenfootImage("images/wave_trail/trail" + i  + ".png");
-            trailAnimation[i].scale(trailAnimation[i].getWidth() / 4, trailAnimation[i].getHeight() / 4);
+            trailAnimation[i].scale(trailAnimation[i].getWidth() / 5, trailAnimation[i].getHeight() / 5);
         }
         setImage(trailAnimation[imageIndex]);
     }
