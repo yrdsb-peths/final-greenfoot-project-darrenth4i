@@ -99,7 +99,7 @@ public class MyWorld extends World
         
         if(touchingGroundOrCeiling){
             Trail trail = new Trail(1);
-            addObject(trail, wave.wavePosX - 10, wave.wavePosY);
+            addObject(trail, wave.wavePosX, wave.wavePosY);
         }
     }
     
