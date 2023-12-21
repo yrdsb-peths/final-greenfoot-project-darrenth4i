@@ -10,6 +10,7 @@ public class MyWorld extends World
 {
     Label scoreLabel; //Score label object
     int waveStartPos = 100;
+    Wave wave;
     /**
      * Constructor for objects of class MyWorld
      */
@@ -18,7 +19,10 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1, false);
         
-        Wave wave = new Wave();
+        Trail trail = new Trail(1);
+        addObject(trail, waveStartPos - 20, 300);
+        
+        wave = new Wave();
         addObject(wave, waveStartPos, 300);
         
         Hitbox hitbox = new Hitbox();
@@ -38,6 +42,7 @@ public class MyWorld extends World
      */
     public void act(){
         //Only create a block tower once spawn cooldown is over
+        createTrail();
         if(spawnTimer.millisElapsed() < spawnCD){
             return;
         }
@@ -75,6 +80,26 @@ public class MyWorld extends World
         
         currentSpikes++;
     }    
+    
+    /**
+     * Method to create trail to follow user as they click wave
+     */
+    public void createTrail(){
+        //Remove spike object when it is offscreen and create new spike
+        if(wave.pressed){
+            Trail trail = new Trail(2);
+            addObject(trail, wave.wavePosX - 20, wave.wavePosY);
+        }
+        if(!wave.pressed){
+            Trail trail = new Trail(0);
+            addObject(trail, wave.wavePosX - 20, wave.wavePosY);
+        }
+        
+        if(wave.wavePosY > 390 || wave.wavePosY < 10){
+            Trail trail = new Trail(1);
+            addObject(trail, wave.wavePosX - 20, wave.wavePosY);
+        }
+    }
     
     /**
      * Method to create a block tower from either the ceiling or floor
