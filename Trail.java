@@ -17,17 +17,16 @@ public class Trail extends Wave
         // Add your action code here.
         scroll();
         remove();
-        //createTrail();
     }
     
     //Array for the wave trail images
     GreenfootImage[] trailAnimation = new GreenfootImage[3];
-    public Trail(){
+    public Trail(int imageIndex){
         for(int i = 0; i < trailAnimation.length; i++){
             trailAnimation[i] = new GreenfootImage("images/wave_trail/trail" + i  + ".png");
             trailAnimation[i].scale(trailAnimation[i].getWidth() / 4, trailAnimation[i].getHeight() / 4);
         }
-        setImage(trailAnimation[1]);
+        setImage(trailAnimation[imageIndex]);
     }
     
     /**
@@ -46,30 +45,6 @@ public class Trail extends Wave
         if(getX() < 0){
             MyWorld world = (MyWorld) getWorld();
             world.removeObject(this);
-        }
-    }
-    
-    /**
-     * Method to create trail to follow user as they click wave
-     */
-    MyWorld world = (MyWorld) getWorld();
-    public void createTrail(){
-        //Remove spike object when it is offscreen and create new spike
-        if(pressed){
-            Trail trail = new Trail();
-            setImage(trailAnimation[2]);
-            world.addObject(trail, wavePosX - 20, wavePosY);
-        }
-        if(!pressed){
-            Trail trail = new Trail();
-            setImage(trailAnimation[0]);
-            world.addObject(trail, wavePosX - 20, wavePosY);
-        }
-        
-        if(wavePosY > 390 || wavePosY < 10){
-            Trail trail = new Trail();
-            setImage(trailAnimation[1]);
-            world.addObject(trail, wavePosX - 20, wavePosY);
         }
     }
 }
