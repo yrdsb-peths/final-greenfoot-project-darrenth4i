@@ -85,17 +85,19 @@ public class MyWorld extends World
      * Method to create trail to follow user as they click wave
      */
     public void createTrail(){
+        //Variable to determine when Wave is touching ground or ceiling
+        boolean touchingGroundOrCeiling = wave.wavePosY > 390 || wave.wavePosY < 10;
         //Remove spike object when it is offscreen and create new spike
-        if(wave.pressed){
+        if(wave.pressed && !touchingGroundOrCeiling){
             Trail trail = new Trail(2);
             addObject(trail, wave.wavePosX - 20, wave.wavePosY);
         }
-        if(!wave.pressed){
+        if(!wave.pressed && !touchingGroundOrCeiling){
             Trail trail = new Trail(0);
             addObject(trail, wave.wavePosX - 20, wave.wavePosY);
         }
         
-        if(wave.wavePosY > 390 || wave.wavePosY < 10){
+        if(touchingGroundOrCeiling){
             Trail trail = new Trail(1);
             addObject(trail, wave.wavePosX - 20, wave.wavePosY);
         }
