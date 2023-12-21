@@ -32,7 +32,7 @@ public class MyWorld extends World
         addObject(scoreLabel, 85, 30);
         
         //Trail will always spawn behind wave, looks better
-        setPaintOrder(Wave.class, Trail.class);
+        setPaintOrder(Hitbox.class, Wave.class, Trail.class);
     }
     
     SimpleTimer spawnTimer = new SimpleTimer();
@@ -99,7 +99,7 @@ public class MyWorld extends World
         
         if(touchingGroundOrCeiling){
             Trail trail = new Trail(1);
-            addObject(trail, wave.wavePosX - 10, wave.wavePosY);
+            addObject(trail, wave.wavePosX, wave.wavePosY);
         }
     }
     
@@ -157,9 +157,9 @@ public class MyWorld extends World
         score++;
         scoreLabel.setValue("Score: " + score); //update score
         
-        //Increase amount of spikes every 5 points and reduce
+        //Increase amount of spikes every 10 points and reduce
         //block spawning cooldown by 10 ms
-        if(limitSpikes < 13 && score % 5 == 0)
+        if(limitSpikes < 13 && score % 10 == 0)
         {
             limitSpikes++;
             limitBlocks++;
