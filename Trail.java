@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Darren
  * @version 12/20/2023
  */
-public class Trail extends Wave
+public class Trail extends Actor
 {
     /**
      * Act - do whatever the Trail wants to do. This method is called whenever
