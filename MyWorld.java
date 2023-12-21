@@ -19,9 +19,6 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1, false);
         
-        Trail trail = new Trail(1);
-        addObject(trail, waveStartPos - 20, 300);
-        
         wave = new Wave();
         addObject(wave, waveStartPos, 300);
         
@@ -33,6 +30,9 @@ public class MyWorld extends World
         //Label to show the score
         scoreLabel = new Label("Score: " + 0, 40);
         addObject(scoreLabel, 85, 30);
+        
+        //Trail will always spawn behind wave, looks better
+        setPaintOrder(Wave.class, Trail.class);
     }
     
     SimpleTimer spawnTimer = new SimpleTimer();
@@ -85,19 +85,21 @@ public class MyWorld extends World
      * Method to create trail to follow user as they click wave
      */
     public void createTrail(){
+        //Variable to determine when Wave is touching ground or ceiling
+        boolean touchingGroundOrCeiling = wave.wavePosY > 390 || wave.wavePosY < 10;
         //Remove spike object when it is offscreen and create new spike
-        if(wave.pressed){
+        if(wave.pressed && !touchingGroundOrCeiling){
             Trail trail = new Trail(2);
-            addObject(trail, wave.wavePosX - 20, wave.wavePosY);
+            addObject(trail, wave.wavePosX, wave.wavePosY);
         }
-        if(!wave.pressed){
+        if(!wave.pressed && !touchingGroundOrCeiling){
             Trail trail = new Trail(0);
-            addObject(trail, wave.wavePosX - 20, wave.wavePosY);
+            addObject(trail, wave.wavePosX, wave.wavePosY);
         }
         
-        if(wave.wavePosY > 390 || wave.wavePosY < 10){
+        if(touchingGroundOrCeiling){
             Trail trail = new Trail(1);
-            addObject(trail, wave.wavePosX - 20, wave.wavePosY);
+            addObject(trail, wave.wavePosX - 10, wave.wavePosY);
         }
     }
     
