@@ -8,8 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Button extends Actor
 {
-    public Button(String imgPath){
-        setImage("images/button/" + imgPath + ".png");
+    String imageLink;
+    public Button(String imgPath, int scale){
+        imageLink = "images/button/" + imgPath + ".png";
+        GreenfootImage image = new GreenfootImage(imageLink);
+        
+        image.scale(image.getWidth() / scale, image.getHeight() / scale);
     }
     
     /**
