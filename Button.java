@@ -9,7 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Button extends Actor
 {
     String imageLink;
+    String buttonType;
     public Button(String imgPath, int scale){
+        buttonType = imgPath;
         imageLink = "images/button/" + imgPath + ".png";
         GreenfootImage image = new GreenfootImage(imageLink);
         image.scale(image.getWidth() / scale, image.getHeight() / scale);
@@ -28,7 +30,7 @@ public class Button extends Actor
     
     MyWorld gameWorld = new MyWorld();
     public void pressed(){
-        if(Greenfoot.mouseClicked(this)){
+        if(Greenfoot.mouseClicked(this) && buttonType.equals("play")){
             Greenfoot.setWorld(gameWorld);
         }
     }
