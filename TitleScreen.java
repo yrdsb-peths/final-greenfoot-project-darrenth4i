@@ -19,5 +19,8 @@ public class TitleScreen extends World
         
         Button play = new Button("play", 4);
         addObject(play, 250, 250);
+        
+        Button options = new Button("options", 3);
+        addObject(options, 350, 250);
     }
 }
