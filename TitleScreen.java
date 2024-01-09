@@ -17,18 +17,7 @@ public class TitleScreen extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
         
-        Button play = new Button("play", 5);
-        addObject(play, 400, 400);
-    }
-    
-    MyWorld gameWorld = new MyWorld();
-    /**
-     * Main world's act loop
-     */
-    public void act(){
-        //Start game once player presses space bar or clicks mouse
-        if(Greenfoot.isKeyDown("space") || Greenfoot.mousePressed(gameWorld)){
-            Greenfoot.setWorld(gameWorld);
-        }
+        Button play = new Button("play", 4);
+        addObject(play, 250, 250);
     }
 }

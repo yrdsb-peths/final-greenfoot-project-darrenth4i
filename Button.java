@@ -12,8 +12,8 @@ public class Button extends Actor
     public Button(String imgPath, int scale){
         imageLink = "images/button/" + imgPath + ".png";
         GreenfootImage image = new GreenfootImage(imageLink);
-        
         image.scale(image.getWidth() / scale, image.getHeight() / scale);
+        setImage(image);
     }
     
     /**
@@ -23,5 +23,13 @@ public class Button extends Actor
     public void act()
     {
         // Add your action code here.
+        pressed();
+    }
+    
+    MyWorld gameWorld = new MyWorld();
+    public void pressed(){
+        if(Greenfoot.mouseClicked(this)){
+            Greenfoot.setWorld(gameWorld);
+        }
     }
 }
