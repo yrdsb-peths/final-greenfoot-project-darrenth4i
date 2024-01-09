@@ -43,5 +43,6 @@ public class Button extends Actor
         if(Greenfoot.mouseClicked(this) && buttonType.equals("play")){
             Greenfoot.setWorld(gameWorld);
         }
+        
     }
 }
