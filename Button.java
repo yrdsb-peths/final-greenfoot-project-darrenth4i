@@ -35,6 +35,7 @@ public class Button extends Actor
     }
     
     MyWorld gameWorld = new MyWorld();
+    OptionScreen optionsWorld = new OptionScreen();
     /**
      * Function to change to another world when user clicks on the button
      */
@@ -43,6 +44,8 @@ public class Button extends Actor
         if(Greenfoot.mouseClicked(this) && buttonType.equals("play")){
             Greenfoot.setWorld(gameWorld);
         }
-        
+        else if(Greenfoot.mouseClicked(this) && buttonType.equals("options")){
+            Greenfoot.setWorld(optionsWorld);
+        }
     }
 }
