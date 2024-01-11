@@ -20,14 +20,11 @@ public class Trail extends Actor
     }
     
     //Array for the wave trail images
-    GreenfootImage[] trailAnimation = new GreenfootImage[6];
+    GreenfootImage[] trailAnimation = new GreenfootImage[9];
     public Trail(int imageIndex){
+        //Shrink wave trails by 5 and add to trailAnimation array
         for(int i = 0; i < trailAnimation.length; i++){
             trailAnimation[i] = new GreenfootImage("images/wave_trail/trail" + i  + ".png");
-            trailAnimation[i].scale(trailAnimation[i].getWidth() / 5, trailAnimation[i].getHeight() / 5);
-        }
-        for(int i = 3; i < trailAnimation.length; i++){
-            trailAnimation[i] = new GreenfootImage("images/wave_trail/trail" + i  + "blue.png");
             trailAnimation[i].scale(trailAnimation[i].getWidth() / 5, trailAnimation[i].getHeight() / 5);
         }
         setImage(trailAnimation[imageIndex]);

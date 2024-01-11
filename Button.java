@@ -33,19 +33,26 @@ public class Button extends Actor
         // Add your action code here.
         pressed();
     }
-    
-    MyWorld gameWorld = new MyWorld();
-    OptionScreen optionsWorld = new OptionScreen();
+
     /**
      * Function to change to another world when user clicks on the button
      */
     public void pressed(){
-        //Change to game world
+        //Change to specified world when the specific button is clicked
+        //E.g. play button is clicked so it switches to game world
         if(Greenfoot.mouseClicked(this) && buttonType.equals("play")){
+            MyWorld gameWorld = new MyWorld();
             Greenfoot.setWorld(gameWorld);
         }
+        //Go to options screen from title screen
         else if(Greenfoot.mouseClicked(this) && buttonType.equals("options")){
+            OptionScreen optionsWorld = new OptionScreen();
             Greenfoot.setWorld(optionsWorld);
+        }
+        //Exit to title screen from the options screen
+        else if(Greenfoot.mouseClicked(this) && buttonType.equals("exit")){
+            TitleScreen titleWorld = new TitleScreen();
+            Greenfoot.setWorld(titleWorld);
         }
     }
 }
