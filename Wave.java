@@ -16,10 +16,12 @@ public class Wave extends Actor
      */
     int wavePosX; //Current wave x position
     int wavePosY; //Current wave y position
+    //Variable to change the index of waveAnimation -> different colours
+    int colour; 
     public void act()
     {
         // Add your action code here.
-        click();
+        click(colour);
         wavePosX = getX();
         wavePosY = getY();
     }
@@ -44,7 +46,7 @@ public class Wave extends Actor
      */
     boolean pressed; //Variable to determine if mouse is being held or not
     MyWorld world = (MyWorld) getWorld();
-    public void click(){
+    public void click(int colour){
         
         if(Greenfoot.mousePressed(world)){
             pressed = true;
@@ -55,20 +57,20 @@ public class Wave extends Actor
         
         //When player is clicking, wave moves up
         if(pressed){
-            setImage(waveAnimation[2]); //Wave icon up image
+            setImage(waveAnimation[2 + colour]); //Wave icon up image
             setLocation(getX(), getY() - 4);
             
         }
         //When player lets go, wave moves down
         if(!pressed){
-            setImage(waveAnimation[0]); //Wave icon down image
+            setImage(waveAnimation[0 + colour]); //Wave icon down image
             setLocation(getX(), getY() + 4);
         }
         
         //Reset wave to idle image when it is touching the floor or ceiling
         //And prevent wave from going past the boundaries of world
         if(getY() > 390 || getY() < 10){
-            setImage(waveAnimation[1]);
+            setImage(waveAnimation[1 + colour]);
             if(getY() > 400){
                 setLocation(getX(), 400);
             }
@@ -76,5 +78,9 @@ public class Wave extends Actor
                 setLocation(getX(), 0);
             }
         }
+    }
+    
+    public void setColour(int colourNum){
+        colour = colourNum;
     }
 }
