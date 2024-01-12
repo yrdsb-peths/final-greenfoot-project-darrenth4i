@@ -14,6 +14,9 @@ public class OptionScreen extends World
      * 
      */
     Button exit;
+    Button blueTrail;
+    Button blackTrail;
+    Button redTrail;
     public OptionScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -23,13 +26,13 @@ public class OptionScreen extends World
         addObject(exit, 25, 25);
         
         //Create buttons for changing colour of wave trail
-        Button blueTrail = new Button("blue", 2);
+        blueTrail = new Button("blue", 2);
         addObject(blueTrail, 135, 295);
         
-        Button blackTrail = new Button("black", 2);
+        blackTrail = new Button("black", 2);
         addObject(blackTrail, 195, 295);
         
-        Button redTrail = new Button("red", 2);
+        redTrail = new Button("red", 2);
         addObject(redTrail, 255, 295);
     }
     
@@ -40,8 +43,17 @@ public class OptionScreen extends World
     public void pressed(){
         //Exit to title screen from the options screen
         if(Greenfoot.mouseClicked(exit)){
-			TitleScreen titleWorld = new TitleScreen();
+            TitleScreen titleWorld = new TitleScreen();
             Greenfoot.setWorld(titleWorld);
+        }
+        if(Greenfoot.mouseClicked(blackTrail)){
+            //((TitleScreen)getWorld()).colour = 0;
+        }
+        else if(Greenfoot.mouseClicked(blueTrail)){
+            //((TitleScreen)getWorld()).colour = 3;
+        }
+        else if(Greenfoot.mouseClicked(redTrail)){
+            //((TitleScreen)getWorld()).colour = 6;
         }
     }
 }

@@ -33,21 +33,12 @@ public class Button extends Actor
     public void act()
     {
         // Add your action code here.
-        pressed();
     }
 
     /**
      * Function to change to another world when user clicks on the button
      */ 
     public void pressed(){
-        if(Greenfoot.mouseClicked(this) && buttonType.equals("black")){
-            ((TitleScreen)getWorld()).colour = 0;
-        }
-        else if(Greenfoot.mouseClicked(this) && buttonType.equals("blue")){
-            ((TitleScreen)getWorld()).colour = 3;
-        }
-        else if(Greenfoot.mouseClicked(this) && buttonType.equals("red")){
-            ((TitleScreen)getWorld()).colour = 6;
-        }
+        
     }
 }
