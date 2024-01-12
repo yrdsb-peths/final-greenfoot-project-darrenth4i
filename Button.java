@@ -12,6 +12,8 @@ public class Button extends Actor
     String imageLink;
     //To differentiate between different buttons
     String buttonType;
+    //To tell what colour was chosen for wave trail
+    int colour;
     /**
      * Button constructor to find image path based on specified 
      * imgPath and create scaled image
@@ -36,23 +38,16 @@ public class Button extends Actor
 
     /**
      * Function to change to another world when user clicks on the button
-     */
+     */ 
     public void pressed(){
-        //Change to specified world when the specific button is clicked
-        //E.g. play button is clicked so it switches to game world
-        if(Greenfoot.mouseClicked(this) && buttonType.equals("play")){
-            MyWorld gameWorld = new MyWorld();
-            Greenfoot.setWorld(gameWorld);
+        if(Greenfoot.mouseClicked(this) && buttonType.equals("black")){
+            ((TitleScreen)getWorld()).colour = 0;
         }
-        //Go to options screen from title screen
-        else if(Greenfoot.mouseClicked(this) && buttonType.equals("options")){
-            OptionScreen optionsWorld = new OptionScreen();
-            Greenfoot.setWorld(optionsWorld);
+        else if(Greenfoot.mouseClicked(this) && buttonType.equals("blue")){
+            ((TitleScreen)getWorld()).colour = 3;
         }
-        //Exit to title screen from the options screen
-        else if(Greenfoot.mouseClicked(this) && buttonType.equals("exit")){
-            TitleScreen titleWorld = new TitleScreen();
-            Greenfoot.setWorld(titleWorld);
+        else if(Greenfoot.mouseClicked(this) && buttonType.equals("red")){
+            ((TitleScreen)getWorld()).colour = 6;
         }
     }
 }
