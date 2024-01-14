@@ -13,7 +13,9 @@ public class OptionScreen extends World
      * Constructor for objects of class OptionScreen.
      * 
      */
+    //button object to exit options screen 
     Button exit;
+    //button objects to change wave trail colour
     Button blueTrail;
     Button blackTrail;
     Button redTrail;
@@ -40,13 +42,17 @@ public class OptionScreen extends World
         pressed();
     }
     
+    /**
+     * Method that transitions to another world based on the
+     * image/button that is pressed
+     */
     public void pressed(){
         //Exit to title screen from the options screen
         if(Greenfoot.mouseClicked(exit)){
             TitleScreen titleWorld = new TitleScreen();
             Greenfoot.setWorld(titleWorld);
         }
-        if(Greenfoot.mouseClicked(blackTrail)){
+        else if(Greenfoot.mouseClicked(blackTrail)){
             //((TitleScreen)getWorld()).colour = 0;
         }
         else if(Greenfoot.mouseClicked(blueTrail)){

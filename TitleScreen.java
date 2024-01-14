@@ -33,6 +33,10 @@ public class TitleScreen extends World
     
     MyWorld gameWorld = new MyWorld();
     OptionScreen optionWorld = new OptionScreen();
+    /**
+     * Method that transitions to another world based on the
+     * image/button that is pressed
+     */
     public void pressed(){
         //Change to specified world when the specific button is clicked
         //E.g. play button is clicked so it switches to game world
@@ -44,4 +48,6 @@ public class TitleScreen extends World
             Greenfoot.setWorld(optionWorld);
         }
     }
+    
+    
 }
