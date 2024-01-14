@@ -55,15 +55,36 @@ public class OptionScreen extends World
         }
         //Since there are three different wave trails
         //as animation, the colour variable offsets image index by 0/3/6
+        //0 = colour black, 3 = blue, 6 = red
         else if(Greenfoot.mouseClicked(blackTrail)){
             colour = 0;
+            //Change red colour image to add checkmark and remove it from
+            //The other selected colours
+            blackTrail.createImage("blackCheck", 2);
+            resetChecked(redTrail, "red", blueTrail, "blue");
         }
         else if(Greenfoot.mouseClicked(blueTrail)){
             colour = 3;
+            //Change red colour image to add checkmark and remove it from
+            //The other selected colours
+            blueTrail.createImage("blueCheck", 2);
+            resetChecked(blackTrail, "black", redTrail, "red");
         }
         else if(Greenfoot.mouseClicked(redTrail)){
             colour = 6;
+            //Change red colour image to add checkmark and remove it from
+            //The other selected colours
             redTrail.createImage("redCheck", 2);
+            resetChecked(blackTrail, "black", blueTrail, "blue");
         }
+    }
+    
+    /**
+     * Method to switch image back to unchecked version if it
+     * has not been selected
+     */
+    public void resetChecked(Button colOne, String one, Button colTwo, String two){
+        colOne.createImage(one, 2);
+        colTwo.createImage(two, 2);
     }
 }
