@@ -11,13 +11,19 @@ public class MyWorld extends World
     Label scoreLabel; //Score label object
     int waveStartPos = 100;
     Wave wave;
+    //variable to switch to different imageIndex values 
+    //-> black = 0 -> blue = 3 -> red = 6
+    int colour; 
     /**
      * Constructor for objects of class MyWorld
      */
-    public MyWorld()
+    public MyWorld(int col)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1, false);
+        
+        colour = col;
+        System.out.println(colour);
         
         wave = new Wave();
         addObject(wave, waveStartPos, 300);
@@ -41,12 +47,12 @@ public class MyWorld extends World
      * Method to spawn in obstacles constantly
      */
     public void act(){
-        //Only create a block tower once spawn cooldown is over
-        createTrail();
+        createTrail(colour);
         if(spawnTimer.millisElapsed() < spawnCD){
             return;
         }
         spawnTimer.mark();
+        //Only create a block tower once spawn cooldown is over
         createBlock();
     }
     
@@ -84,21 +90,21 @@ public class MyWorld extends World
     /**
      * Method to create trail to follow user as they click wave
      */
-    public void createTrail(){
+    public void createTrail(int colour){
         //Variable to determine when Wave is touching ground or ceiling
         boolean touchingGroundOrCeiling = wave.wavePosY > 390 || wave.wavePosY < 10;
         //Remove spike object when it is offscreen and create new spike
         if(wave.pressed && !touchingGroundOrCeiling){
-            Trail trail = new Trail(2);
+            Trail trail = new Trail(2 + colour);
             addObject(trail, wave.wavePosX, wave.wavePosY);
         }
         if(!wave.pressed && !touchingGroundOrCeiling){
-            Trail trail = new Trail(0);
+            Trail trail = new Trail(0 + colour);
             addObject(trail, wave.wavePosX, wave.wavePosY);
         }
         
         if(touchingGroundOrCeiling){
-            Trail trail = new Trail(1);
+            Trail trail = new Trail(1 + colour);
             addObject(trail, wave.wavePosX, wave.wavePosY);
         }
     }
@@ -165,5 +171,9 @@ public class MyWorld extends World
             limitBlocks++;
             spawnCD -= 10;
         }
+    }
+    
+    public void setColour(int col){
+        colour = col;
     }
 }

@@ -16,10 +16,12 @@ public class Wave extends Actor
      */
     int wavePosX; //Current wave x position
     int wavePosY; //Current wave y position
+    //Variable to change the index of waveAnimation -> different icons
+    int icon; 
     public void act()
     {
         // Add your action code here.
-        click();
+        click(icon);
         wavePosX = getX();
         wavePosY = getY();
     }
@@ -30,7 +32,7 @@ public class Wave extends Actor
      * Wave constructor to scale images to smaller size 
      */
     public Wave(){
-        //Construct an array of 3 images of wave and wave trail
+        //Construct an array of 3 images of wave and wave icon
         for(int i = 0; i < waveAnimation.length; i++){
             waveAnimation[i] = new GreenfootImage("images/wave_idle/wave" + i  + ".png");
             waveAnimation[i].scale(waveAnimation[i].getWidth() / 4, waveAnimation[i].getHeight() / 4);
@@ -44,7 +46,7 @@ public class Wave extends Actor
      */
     boolean pressed; //Variable to determine if mouse is being held or not
     MyWorld world = (MyWorld) getWorld();
-    public void click(){
+    public void click(int icon){
         
         if(Greenfoot.mousePressed(world)){
             pressed = true;
@@ -55,20 +57,20 @@ public class Wave extends Actor
         
         //When player is clicking, wave moves up
         if(pressed){
-            setImage(waveAnimation[2]); //Wave icon up image
+            setImage(waveAnimation[2 + icon]); //Wave icon up image
             setLocation(getX(), getY() - 4);
             
         }
         //When player lets go, wave moves down
         if(!pressed){
-            setImage(waveAnimation[0]); //Wave icon down image
+            setImage(waveAnimation[0 + icon]); //Wave icon down image
             setLocation(getX(), getY() + 4);
         }
         
         //Reset wave to idle image when it is touching the floor or ceiling
         //And prevent wave from going past the boundaries of world
         if(getY() > 390 || getY() < 10){
-            setImage(waveAnimation[1]);
+            setImage(waveAnimation[1 + icon]);
             if(getY() > 400){
                 setLocation(getX(), 400);
             }
@@ -76,5 +78,9 @@ public class Wave extends Actor
                 setLocation(getX(), 0);
             }
         }
+    }
+    
+    public void setIcon(int iconNum){
+        icon = iconNum;
     }
 }
