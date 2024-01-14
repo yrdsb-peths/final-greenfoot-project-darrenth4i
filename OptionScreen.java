@@ -46,20 +46,23 @@ public class OptionScreen extends World
      * Method that transitions to another world based on the
      * image/button that is pressed
      */
+    int colour;
     public void pressed(){
         //Exit to title screen from the options screen
         if(Greenfoot.mouseClicked(exit)){
-            TitleScreen titleWorld = new TitleScreen();
+            TitleScreen titleWorld = new TitleScreen(colour);
             Greenfoot.setWorld(titleWorld);
         }
+        //Since there are three different wave trails
+        //as animation, the colour variable offsets image index by 0/3/6
         else if(Greenfoot.mouseClicked(blackTrail)){
-            //((TitleScreen)getWorld()).colour = 0;
+            colour = 0;
         }
         else if(Greenfoot.mouseClicked(blueTrail)){
-            //((TitleScreen)getWorld()).colour = 3;
+            colour = 3;
         }
         else if(Greenfoot.mouseClicked(redTrail)){
-            //((TitleScreen)getWorld()).colour = 6;
+            colour = 6;
         }
     }
 }
