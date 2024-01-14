@@ -9,36 +9,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Button extends Actor
 {
     //Image path string
-    String imageLink;
-    //To differentiate between different buttons
-    String buttonType;
+    String imageLink;  
     //To tell what colour was chosen for wave trail
     int colour;
+    GreenfootImage image;
     /**
      * Button constructor to find image path based on specified 
      * imgPath and create scaled image
      */
     public Button(String imgPath, int scale){
-        buttonType = imgPath;
-        imageLink = "images/button/" + imgPath + ".png";
-        GreenfootImage image = new GreenfootImage(imageLink);
-        image.scale(image.getWidth() / scale, image.getHeight() / scale);
-        setImage(image);
+        createImage(imgPath, scale);
     }
     
     /**
-     * Act - do whatever the Button wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Method to set the image of an object and scale it
      */
-    public void act()
-    {
-        // Add your action code here.
-    }
-
-    /**
-     * Function to change to another world when user clicks on the button
-     */ 
-    public void pressed(){
-        
+    public void createImage(String img, int scale){
+        image = new GreenfootImage("images/button/" + img + ".png");
+        image.scale(image.getWidth() / scale, image.getHeight() / scale);
+        setImage(image);
     }
 }

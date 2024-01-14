@@ -31,7 +31,7 @@ public class OptionScreen extends World
         blueTrail = new Button("blue", 2);
         addObject(blueTrail, 135, 295);
         
-        blackTrail = new Button("black", 2);
+        blackTrail = new Button("blackCheck", 2);
         addObject(blackTrail, 195, 295);
         
         redTrail = new Button("red", 2);
@@ -63,6 +63,7 @@ public class OptionScreen extends World
         }
         else if(Greenfoot.mouseClicked(redTrail)){
             colour = 6;
+            redTrail.createImage("redCheck", 2);
         }
     }
 }
