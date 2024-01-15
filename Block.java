@@ -21,11 +21,15 @@ public class Block extends Spike
         remove();
     }
     
-    public Block(){
+    //Create array with 5 image size 
+    GreenfootImage[] blockTower = new GreenfootImage[5];
+    public Block(int height){
         //Construct block image and scale it down
-        GreenfootImage blockImage = new GreenfootImage("images/block.png");
-        blockImage.scale(blockImage.getWidth() / 4, blockImage.getHeight() / 4);
-        setImage(blockImage); 
+        for(int i = 0; i < 5; i++){
+            blockTower[i] = new GreenfootImage("images/spike/" + "block" + i + ".png");
+            blockTower[i].scale(blockTower[i].getWidth() / 4, blockTower[i].getHeight() / 4);
+        }
+        setImage(blockTower[height - 1]);
     }
     
     /**

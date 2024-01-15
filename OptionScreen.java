@@ -46,6 +46,8 @@ public class OptionScreen extends World
             redTrail.createImage("redCheck", 2);
         }
         
+        //Use icon variable from previous world to display the correct
+        //wave icon user had previously chosen
         if(icon == 0){
             defaultWave.createImage("defaultCheck", 4);
         }
@@ -68,6 +70,7 @@ public class OptionScreen extends World
     int colour;
     int icon;
     public void pressed(){
+        //Each if statement checks if mouse clicks on the button's image
         //Exit to title screen from the options screen
         if(Greenfoot.mouseClicked(exit)){
             TitleScreen titleWorld = new TitleScreen(colour, icon);
@@ -97,6 +100,9 @@ public class OptionScreen extends World
             redTrail.createImage("redCheck", 2);
             resetChecked(blackTrail, "black", blueTrail, "blue", 2);
         }
+        //Since there are three different wave icons
+        //as animation, the icon variable offsets image index by 0/3/6
+        //0 = colour default, 3 = kite, 6 = taser
         else if(Greenfoot.mouseClicked(defaultWave)){
             icon = 0;
             defaultWave.createImage("defaultCheck", 4);
@@ -124,7 +130,7 @@ public class OptionScreen extends World
     }
     
     /**
-     * Method to create wave trail colour + icon buttons
+     * Method to create wave trail colour + icon images/buttons
      */
     public void createButtons(){
         exit = new Button("exit", 8);
@@ -141,6 +147,7 @@ public class OptionScreen extends World
         redTrail = new Button("red", 2);
         addObject(redTrail, 255, 295);
         
+        //default wave icon is selected by default
         defaultWave = new Button("defaultIcon", 4);
         addObject(defaultWave, 355, 295);
         
