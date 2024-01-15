@@ -29,16 +29,20 @@ public class TitleScreen extends World
     //acts as offset to wave trail image index to change colour
     //0 = black, 3 = blue, 6 = red
     int colour = 0;
+    //offset but for wave icon
+    //0 = default, 3 = kite icon, 6 = taser icon
+    int icon = 0;
     /**
      * Overloaded constructor that takes in colour input from
      * user changing colours/icons in option screen
      */
-    public TitleScreen(int col)
+    public TitleScreen(int col, int iconOffset)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
         
         colour = col;
+        icon = iconOffset;
         
         play = new Button("play", 4);
         addObject(play, 250, 250);
@@ -51,7 +55,6 @@ public class TitleScreen extends World
         pressed();
     }
     
-    OptionScreen optionWorld = new OptionScreen();
     /**
      * Method that transitions to another world based on the
      * image/button that is pressed
@@ -61,11 +64,13 @@ public class TitleScreen extends World
         //E.g. play button is clicked so it switches to game world
         if(Greenfoot.mouseClicked(play)){
             //Pass user chosen colour to game world 
-            MyWorld gameWorld = new MyWorld(colour);
+            MyWorld gameWorld = new MyWorld(colour, icon);
             Greenfoot.setWorld(gameWorld);
         }
         //Go to options screen from title screen
         else if(Greenfoot.mouseClicked(options)){
+            //Pass user chosen colour to option world 
+            OptionScreen optionWorld = new OptionScreen(colour, icon);
             Greenfoot.setWorld(optionWorld);
         }
     }

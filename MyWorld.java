@@ -17,15 +17,14 @@ public class MyWorld extends World
     /**
      * Constructor for objects of class MyWorld
      */
-    public MyWorld(int col)
+    public MyWorld(int col, int icon)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1, false);
         
         colour = col;
-        System.out.println(colour);
         
-        wave = new Wave();
+        wave = new Wave(icon);
         addObject(wave, waveStartPos, 300);
         
         Hitbox hitbox = new Hitbox();

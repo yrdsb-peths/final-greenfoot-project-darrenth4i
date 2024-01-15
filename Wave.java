@@ -27,17 +27,19 @@ public class Wave extends Actor
     }
     
     //Array for the wave images
-    GreenfootImage[] waveAnimation = new GreenfootImage[3];
+    GreenfootImage[] waveAnimation = new GreenfootImage[9];
     /**
      * Wave constructor to scale images to smaller size 
      */
-    public Wave(){
-        //Construct an array of 3 images of wave and wave icon
+    public Wave(int icon){
+        //Construct an array of 9 images of wave and wave icon
         for(int i = 0; i < waveAnimation.length; i++){
             waveAnimation[i] = new GreenfootImage("images/wave_idle/wave" + i  + ".png");
             waveAnimation[i].scale(waveAnimation[i].getWidth() / 4, waveAnimation[i].getHeight() / 4);
             setImage(waveAnimation[1]); //Default wave icon image
         }
+        
+        this.icon = icon;
     }
     
     /**
@@ -80,7 +82,4 @@ public class Wave extends Actor
         }
     }
     
-    public void setIcon(int iconNum){
-        icon = iconNum;
-    }
 }
