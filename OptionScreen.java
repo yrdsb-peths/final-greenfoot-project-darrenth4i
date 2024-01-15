@@ -19,29 +19,11 @@ public class OptionScreen extends World
     Button blueTrail;
     Button blackTrail;
     Button redTrail;
-    public OptionScreen()
-    {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
-        
-        exit = new Button("exit", 8);
-        addObject(exit, 25, 25);
-        
-        //Create buttons for changing colour of wave trail
-        blueTrail = new Button("blue", 2);
-        addObject(blueTrail, 135, 295);
-        
-        //Black trail is selected by default
-        blackTrail = new Button("blackCheck", 2);
-        addObject(blackTrail, 195, 295);
-        
-        redTrail = new Button("red", 2);
-        addObject(redTrail, 255, 295);
-    }
-    
-    /**
-     * Overloaded constructor to keep track of selected colour trail/icon
-     */
+    //button objects to change wave's icon
+    Button defaultWave;
+    Button kiteWave;
+    Button taserWave;
+    //col keeps track of selected colour trail/icon
     public OptionScreen(int col)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -49,20 +31,10 @@ public class OptionScreen extends World
         
         colour = col;
         
-        exit = new Button("exit", 8);
-        addObject(exit, 25, 25);
+        createButtons();
         
-        //Create buttons for changing colour of wave trail
-        blueTrail = new Button("blue", 2);
-        addObject(blueTrail, 135, 295);
-        
-        //Black trail is selected by default
-        blackTrail = new Button("black", 2);
-        addObject(blackTrail, 195, 295);
-        
-        redTrail = new Button("red", 2);
-        addObject(redTrail, 255, 295);
-        
+        //Use colour variable from previous world to display the correct
+        //colour user had previously chosen
         if(colour == 0){
             blackTrail.createImage("blackCheck", 2);
         }
@@ -122,5 +94,33 @@ public class OptionScreen extends World
     public void resetChecked(Button colOne, String one, Button colTwo, String two){
         colOne.createImage(one, 2);
         colTwo.createImage(two, 2);
+    }
+    
+    /**
+     * Method to create wave trail colour + icon buttons
+     */
+    public void createButtons(){
+        exit = new Button("exit", 8);
+        addObject(exit, 25, 25);
+        
+        //Create buttons for changing colour of wave trail
+        blueTrail = new Button("blue", 2);
+        addObject(blueTrail, 135, 295);
+        
+        //Black trail is selected by default
+        blackTrail = new Button("black", 2);
+        addObject(blackTrail, 195, 295);
+        
+        redTrail = new Button("red", 2);
+        addObject(redTrail, 255, 295);
+        
+        defaultWave = new Button("defaultIcon", 4);
+        addObject(defaultWave, 355, 295);
+        
+        kiteWave = new Button("kiteIcon", 4);
+        addObject(kiteWave, 415, 295);
+        
+        taserWave = new Button("taserIcon", 4);
+        addObject(taserWave, 475, 295);
     }
 }
