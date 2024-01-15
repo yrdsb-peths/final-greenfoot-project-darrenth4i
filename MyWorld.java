@@ -130,32 +130,25 @@ public class MyWorld extends World
             
             //0 * 400 = ceiling or 1 * 400 = ground
             int ySpawn = y * 400;
-            Block block = new Block();
+            Block block = new Block(towerHeight);
             //Image height
             int blockHeight = block.getImage().getHeight();
             //Block spawn comes from middle of block so this offset fixes
             //the block spawning past the ceiling/ground, depending on + or -
-            int offset = blockHeight / 2; 
+            int offset = blockHeight/2;
             
-            //Block tower creation
-            for(int i = 0; i<towerHeight; i++){
-                block = new Block();
-                //Spawning on ceiling
-                if(ySpawn == 0){
-                    addObject(block, 600, ySpawn + offset + (i * blockHeight));
-                }
-                //Spawning on ground
-                else{
-                    addObject(block, 600, ySpawn - offset - (i * blockHeight));
-                }
-            }
-            //Create a spike on top/below the block tower
             if(ySpawn == 0){
-                createSpike(600, ySpawn + offset + (towerHeight * blockHeight), true);
+                addObject(block, 600, ySpawn + offset);
+                //Create a spike on below the block tower
+                createSpike(600, ySpawn + blockHeight + 15, true);
             }
+            //Spawning on ground
             else{
-                createSpike(600, ySpawn - offset - (towerHeight * blockHeight), false);
+                addObject(block, 600, ySpawn - offset);
+                //Create a spike on top the block tower
+                createSpike(600, ySpawn - blockHeight - 15, false);
             }
+            
             currentBlocks++;
         }
     }
