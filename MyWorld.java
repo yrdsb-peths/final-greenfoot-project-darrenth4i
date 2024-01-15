@@ -171,8 +171,4 @@ public class MyWorld extends World
             spawnCD -= 10;
         }
     }
-    
-    public void setColour(int col){
-        colour = col;
-    }
 }
