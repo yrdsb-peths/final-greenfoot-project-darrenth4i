@@ -40,19 +40,28 @@ public class MyWorld extends World
         setPaintOrder(Hitbox.class, Wave.class, Trail.class);
     }
     
-    SimpleTimer spawnTimer = new SimpleTimer();
+    SimpleTimer spawnBlockTimer = new SimpleTimer();
+    SimpleTimer spawnTrailTimer = new SimpleTimer();
     int spawnCD = 200; //default block spawning cooldown
     /**
      * Method to spawn in obstacles constantly
      */
     public void act(){
-        createTrail(colour);
-        if(spawnTimer.millisElapsed() < spawnCD){
+        trailTimer();
+        if(spawnBlockTimer.millisElapsed() < spawnCD){
             return;
         }
-        spawnTimer.mark();
+        spawnBlockTimer.mark();
         //Only create a block tower once spawn cooldown is over
         createBlock();
+    }
+    
+    public void trailTimer(){
+        if(spawnTrailTimer.millisElapsed() < 30){
+            return;
+        }
+        spawnTrailTimer.mark();
+        createTrail(colour);
     }
     
     /**
