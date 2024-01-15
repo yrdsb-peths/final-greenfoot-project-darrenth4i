@@ -51,7 +51,6 @@ public class TitleScreen extends World
         pressed();
     }
     
-    OptionScreen optionWorld = new OptionScreen();
     /**
      * Method that transitions to another world based on the
      * image/button that is pressed
@@ -66,6 +65,8 @@ public class TitleScreen extends World
         }
         //Go to options screen from title screen
         else if(Greenfoot.mouseClicked(options)){
+            //Pass user chosen colour to option world 
+            OptionScreen optionWorld = new OptionScreen(colour);
             Greenfoot.setWorld(optionWorld);
         }
     }

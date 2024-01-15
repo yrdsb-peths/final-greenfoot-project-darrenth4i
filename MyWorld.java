@@ -23,7 +23,6 @@ public class MyWorld extends World
         super(600, 400, 1, false);
         
         colour = col;
-        System.out.println(colour);
         
         wave = new Wave();
         addObject(wave, waveStartPos, 300);
