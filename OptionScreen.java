@@ -24,12 +24,13 @@ public class OptionScreen extends World
     Button kiteWave;
     Button taserWave;
     //col keeps track of selected colour trail/icon
-    public OptionScreen(int col)
+    public OptionScreen(int col, int iconOffset)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
         
         colour = col;
+        icon = iconOffset;
         
         createButtons();
         
@@ -44,6 +45,16 @@ public class OptionScreen extends World
         else{
             redTrail.createImage("redCheck", 2);
         }
+        
+        if(icon == 0){
+            defaultWave.createImage("defaultCheck", 4);
+        }
+        else if(icon == 3){
+            kiteWave.createImage("kiteCheck", 4);
+        }
+        else{
+            taserWave.createImage("taserCheck", 4);
+        }
     }
     
     public void act(){
@@ -55,10 +66,11 @@ public class OptionScreen extends World
      * image/button that is pressed
      */
     int colour;
+    int icon;
     public void pressed(){
         //Exit to title screen from the options screen
         if(Greenfoot.mouseClicked(exit)){
-            TitleScreen titleWorld = new TitleScreen(colour);
+            TitleScreen titleWorld = new TitleScreen(colour, icon);
             Greenfoot.setWorld(titleWorld);
         }
         //Since there are three different wave trails
@@ -69,21 +81,36 @@ public class OptionScreen extends World
             //Change red colour image to add checkmark and remove it from
             //The other selected colours
             blackTrail.createImage("blackCheck", 2);
-            resetChecked(redTrail, "red", blueTrail, "blue");
+            resetChecked(redTrail, "red", blueTrail, "blue", 2);
         }
         else if(Greenfoot.mouseClicked(blueTrail)){
             colour = 3;
             //Change red colour image to add checkmark and remove it from
             //The other selected colours
             blueTrail.createImage("blueCheck", 2);
-            resetChecked(blackTrail, "black", redTrail, "red");
+            resetChecked(blackTrail, "black", redTrail, "red", 2);
         }
         else if(Greenfoot.mouseClicked(redTrail)){
             colour = 6;
             //Change red colour image to add checkmark and remove it from
             //The other selected colours
             redTrail.createImage("redCheck", 2);
-            resetChecked(blackTrail, "black", blueTrail, "blue");
+            resetChecked(blackTrail, "black", blueTrail, "blue", 2);
+        }
+        else if(Greenfoot.mouseClicked(defaultWave)){
+            icon = 0;
+            defaultWave.createImage("defaultCheck", 4);
+            resetChecked(kiteWave, "kiteIcon", taserWave, "taserIcon", 4);
+        }
+        else if(Greenfoot.mouseClicked(kiteWave)){
+            icon = 3;
+            kiteWave.createImage("kiteCheck", 4);
+            resetChecked(defaultWave, "defaultIcon", taserWave, "taserIcon", 4);
+        }
+        else if(Greenfoot.mouseClicked(taserWave)){
+            icon = 6;
+            taserWave.createImage("taserCheck", 4);
+            resetChecked(kiteWave, "kiteIcon", defaultWave, "defaultIcon", 4);
         }
     }
     
@@ -91,9 +118,9 @@ public class OptionScreen extends World
      * Method to switch image back to unchecked version if it
      * has not been selected
      */
-    public void resetChecked(Button colOne, String one, Button colTwo, String two){
-        colOne.createImage(one, 2);
-        colTwo.createImage(two, 2);
+    public void resetChecked(Button colOne, String one, Button colTwo, String two, int scale){
+        colOne.createImage(one, scale);
+        colTwo.createImage(two, scale);
     }
     
     /**
