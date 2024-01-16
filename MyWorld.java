@@ -11,9 +11,12 @@ public class MyWorld extends World
     Label scoreLabel; //Score label object
     int waveStartPos = 100;
     Wave wave;
-    //variable to switch to different imageIndex values 
+    //variable to switch to different trail colour values 
     //-> black = 0 -> blue = 3 -> red = 6
     int colour; 
+    
+    Background bg1 = new Background();
+    Background bg2 = new Background();
     /**
      * Constructor for objects of class MyWorld
      */
@@ -22,14 +25,25 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1, false);
         
+        //set trail index offset
         colour = col;
         
+        //Create two Background objects that will loop infinitely
+        bg1.setOtherBackground(bg2);
+        bg2.setOtherBackground(bg1);
+
+        addObject(bg1, 0, 200);
+        addObject(bg2, 1024, 200);
+        
+        //create wave object with specified icon image
         wave = new Wave(icon);
         addObject(wave, waveStartPos, 300);
         
+        //hitbox that follows wave icon and is checked for collision
         Hitbox hitbox = new Hitbox();
         addObject(hitbox, waveStartPos, 300);
-
+        
+        //Create inital block tower obstacles
         createBlock();
         
         //Label to show the score
