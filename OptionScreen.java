@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class OptionScreen here.
+ * the options screen allows a user to customize their wave trail
+ * asa well as their wave icon
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Darren
+ * @version 15 Jan 2024
  */
 public class OptionScreen extends World
 {

@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * An image that the user clicks to go to another World object
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Darren
+ * @version 15 January 2024
  */
 public class Button extends Actor
 {

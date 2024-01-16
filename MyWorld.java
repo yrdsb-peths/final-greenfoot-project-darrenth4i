@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * The game world in which the user has to dodge blocks, spikes
+ * and other obstacles to get the highest score
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Darren
+ * @version 15 January 2024
  */
 public class MyWorld extends World
 {
@@ -33,7 +34,7 @@ public class MyWorld extends World
         bg2.setOtherBackground(bg1);
 
         addObject(bg1, 0, 200);
-        addObject(bg2, 1024, 200);
+        addObject(bg2, 924, 200);
         
         //create wave object with specified icon image
         wave = new Wave(icon);
@@ -70,8 +71,12 @@ public class MyWorld extends World
         createBlock();
     }
     
+    /**
+     * Method to spawn in a trail object behind wave
+     * every 25 ms
+     */
     public void trailTimer(){
-        if(spawnTrailTimer.millisElapsed() < 30){
+        if(spawnTrailTimer.millisElapsed() < 25){
             return;
         }
         spawnTrailTimer.mark();
@@ -144,13 +149,16 @@ public class MyWorld extends World
             
             //0 * 400 = ceiling or 1 * 400 = ground
             int ySpawn = y * 400;
+            
             Block block = new Block(towerHeight);
+            
             //Image height
             int blockHeight = block.getImage().getHeight();
             //Block spawn comes from middle of block so this offset fixes
             //the block spawning past the ceiling/ground, depending on + or -
             int offset = blockHeight/2;
             
+            //Spawning on ceiling
             if(ySpawn == 0){
                 addObject(block, 600, ySpawn + offset);
                 //Create a spike on below the block tower

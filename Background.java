@@ -1,10 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Background here.
+ * Background class will create a scrolling background effect
+ * when the game is being played. This adds to the illusion
+ * of the wave moving
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Darren
+ * @version 15 Jan 2024
  */
 public class Background extends Actor
 {
