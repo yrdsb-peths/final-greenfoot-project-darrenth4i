@@ -143,7 +143,6 @@ public class MyWorld extends World
     int currentBlocks = 0; //number of block towers on screen
     public void createBlock(){
         if(currentBlocks < limitBlocks){
-            int x = Greenfoot.getRandomNumber(200);
             int y = Greenfoot.getRandomNumber(2); //Choose either 0 or 1
             int towerHeight = Greenfoot.getRandomNumber(5) + 1;
             
