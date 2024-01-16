@@ -1,12 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Modifier here.
+ * Modifiers change wave gravity, obstacle speed, and other
+ * aspects of the gameplay
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Darren 
+ * @version 16 January 2024
  */
-public class Modifier extends Actor
+public class Modifier extends Button
 {
     /**
      * Act - do whatever the Modifier wants to do. This method is called whenever
@@ -15,5 +16,14 @@ public class Modifier extends Actor
     public void act()
     {
         // Add your action code here.
+    }
+    
+    /**
+     * Modifier constructor to find image path based on specified 
+     * imgPath and create scaled image
+     */
+    public Modifier(String imgPath, int scale){
+        super(imgPath, scale);
+        super.createImage(imgPath, scale);
     }
 }
