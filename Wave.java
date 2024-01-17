@@ -10,10 +10,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Wave extends Actor
 {
-    /**
-     * Act - do whatever the Wave wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     int wavePosX; //Current wave x position
     int wavePosY; //Current wave y position
     //Variable to change the index of waveAnimation -> different icons
@@ -22,6 +18,16 @@ public class Wave extends Actor
     int gravity = 1;
     //speed wave goes up and down
     int speed = 4;
+    
+    boolean pressed; //Variable to determine if mouse is being held or not
+    MyWorld world = (MyWorld) getWorld();
+    
+    //Array for the wave images
+    GreenfootImage[] waveAnimation = new GreenfootImage[9];
+    /**
+     * Act - do whatever the Wave wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
     public void act()
     {
         // Add your action code here.
@@ -31,8 +37,6 @@ public class Wave extends Actor
         touchPortal();
     }
     
-    //Array for the wave images
-    GreenfootImage[] waveAnimation = new GreenfootImage[9];
     /**
      * Wave constructor to scale images to smaller size 
      */
@@ -51,8 +55,6 @@ public class Wave extends Actor
      * Method to change the image and location of the wave icon based on
      * the Y-coordinate and if mouse is being pressed
      */
-    boolean pressed; //Variable to determine if mouse is being held or not
-    MyWorld world = (MyWorld) getWorld();
     public void click(int icon){
         
         if(Greenfoot.mousePressed(world)){

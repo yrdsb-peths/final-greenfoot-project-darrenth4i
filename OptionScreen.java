@@ -24,6 +24,10 @@ public class OptionScreen extends World
     Button defaultWave;
     Button kiteWave;
     Button taserWave;
+    
+    int colour;
+    int icon;
+    
     //col keeps track of selected colour trail/icon
     public OptionScreen(int col, int iconOffset)
     {    
@@ -68,8 +72,6 @@ public class OptionScreen extends World
      * Method that transitions to another world based on the
      * image/button that is pressed
      */
-    int colour;
-    int icon;
     public void pressed(){
         //Each if statement checks if mouse clicks on the button's image
         //Exit to title screen from the options screen

@@ -9,6 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Hitbox extends Actor
 {
+    GreenfootImage hitbox = new GreenfootImage("images/waveHitbox.png");
+    
     /**
      * Act - do whatever the Hitbox wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -24,7 +26,6 @@ public class Hitbox extends Actor
     /**
      * Constructor for hitbox
      */
-    GreenfootImage hitbox = new GreenfootImage("images/waveHitbox.png");
     public Hitbox(){
         hitbox.scale(hitbox.getWidth() / 10, hitbox.getHeight() / 15);
         hitbox.setTransparency(0); //make hitbox invisible

@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Trail extends Actor
 {
+    //Array for the wave trail images
+    GreenfootImage[] trailAnimation = new GreenfootImage[9];
     /**
      * Act - do whatever the Trail wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -19,8 +21,6 @@ public class Trail extends Actor
         remove();
     }
     
-    //Array for the wave trail images
-    GreenfootImage[] trailAnimation = new GreenfootImage[9];
     public Trail(int imageIndex){
         //Shrink wave trails by 5 and add to trailAnimation array
         for(int i = 0; i < trailAnimation.length; i++){

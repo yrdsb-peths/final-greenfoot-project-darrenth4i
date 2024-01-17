@@ -14,6 +14,13 @@ public class TitleScreen extends World
      */
     Button play;
     Button options;
+    
+    //acts as offset to wave trail image index to change colour
+    //0 = black, 3 = blue, 6 = red
+    int colour = 0;
+    //offset but for wave icon
+    //0 = default, 3 = kite icon, 6 = taser icon
+    int icon = 0;
     public TitleScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -26,12 +33,6 @@ public class TitleScreen extends World
         addObject(options, 350, 250);
     }
     
-    //acts as offset to wave trail image index to change colour
-    //0 = black, 3 = blue, 6 = red
-    int colour = 0;
-    //offset but for wave icon
-    //0 = default, 3 = kite icon, 6 = taser icon
-    int icon = 0;
     /**
      * Overloaded constructor that takes in colour input from
      * user changing colours/icons in option screen

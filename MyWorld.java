@@ -18,6 +18,21 @@ public class MyWorld extends World
     
     Background bg1 = new Background();
     Background bg2 = new Background();
+    
+    int limitBlocks = 3; //maximum amount of block towers spawning on screen
+    int currentBlocks = 0; //number of block towers on screen
+    int gravityCounter = 0; //keep track of the last gravity portal's colour
+    
+    SimpleTimer spawnBlockTimer = new SimpleTimer();
+    SimpleTimer spawnTrailTimer = new SimpleTimer();
+    int spawnCD = 200; //default block spawning cooldown
+    
+    int limitSpikes = 3; //maximum amount of spikes spawning on screen
+    int currentSpikes = 0; //number of spikes on screen
+    
+    Modifier portal;
+    
+    int score;
     /**
      * Constructor for objects of class MyWorld
      */
@@ -55,9 +70,6 @@ public class MyWorld extends World
         setPaintOrder(Hitbox.class, Wave.class, Trail.class);
     }
     
-    SimpleTimer spawnBlockTimer = new SimpleTimer();
-    SimpleTimer spawnTrailTimer = new SimpleTimer();
-    int spawnCD = 200; //default block spawning cooldown
     /**
      * Method to spawn in obstacles constantly
      */
@@ -86,8 +98,6 @@ public class MyWorld extends World
     /**
      * Create a spike in a random y-value on the ground
      */
-    int limitSpikes = 3; //maximum amount of spikes spawning on screen
-    int currentSpikes = 0; //number of spikes on screen
     public void createSpike(){
         //Set the amount of spikes that can appear at once
         if(currentSpikes < limitSpikes){
@@ -146,9 +156,6 @@ public class MyWorld extends World
     /**
      * Method to create a block tower from either the ceiling or floor
      */
-    int limitBlocks = 3; //maximum amount of block towers spawning on screen
-    int currentBlocks = 0; //number of block towers on screen
-    int gravityCounter = 0; //keep track of the last gravity portal's colour
     public void createBlock(){
         if(currentBlocks < limitBlocks){
             int y = Greenfoot.getRandomNumber(2); //Choose either 0 or 1
@@ -189,7 +196,6 @@ public class MyWorld extends World
     /**
      * Method to spawn gravity changing portal at random
      */
-    Modifier portal;
     public int createPortal(int y, int yOffset, int reverseGravity){
         //Every 10 score, spawn a portal 50% of the time
         if(score > 0 && score % 10 == 0 && Greenfoot.getRandomNumber(2) == 1){
@@ -213,7 +219,6 @@ public class MyWorld extends World
         return reverseGravity;
     }
     
-    int score;
     /**
      * Method to increase the score by 1
      */
