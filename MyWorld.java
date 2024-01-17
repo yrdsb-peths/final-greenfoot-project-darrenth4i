@@ -22,6 +22,7 @@ public class MyWorld extends World
     int limitBlocks = 3; //maximum amount of block towers spawning on screen
     int currentBlocks = 0; //number of block towers on screen
     int gravityCounter = 0; //keep track of the last gravity portal's colour
+    int speedCounter = 0; //keep track of the last speed portal's speed
     
     SimpleTimer spawnBlockTimer = new SimpleTimer();
     SimpleTimer spawnTrailTimer = new SimpleTimer();
@@ -31,6 +32,7 @@ public class MyWorld extends World
     int currentSpikes = 0; //number of spikes on screen
     
     Modifier portal;
+    Modifier speed;
     
     int score;
     /**
@@ -179,6 +181,8 @@ public class MyWorld extends World
                 createSpike(600, ySpawn + blockHeight + 15, true);
                 //Spawn portal below spike
                 gravityCounter = createPortal(ySpawn + blockHeight + 15, 75, gravityCounter);
+                //Spawn speed portal below spike
+                speedCounter = createSpeed(ySpawn + blockHeight + 15, 75, speedCounter);
             }
             //Spawning on ground
             else{
@@ -187,6 +191,8 @@ public class MyWorld extends World
                 createSpike(600, ySpawn - blockHeight - 15, false);
                 //Spawn portal above spike
                 gravityCounter = createPortal(ySpawn - blockHeight - 15, -75, gravityCounter);
+                //Spawn portal above spike
+                speedCounter = createSpeed(ySpawn - blockHeight - 15, -75, speedCounter);
             }
             
             currentBlocks++;
@@ -217,6 +223,32 @@ public class MyWorld extends World
         
         //Keep same value if a portal wasnt created
         return reverseGravity;
+    }
+    
+    /**
+     * Method to spawn speed changing portal at random
+     */
+    public int createSpeed(int y, int yOffset, int speedType){
+        //Every 15 score, spawn a portal 75% of the time
+        if(score > 0 && score % 15 == 0 && Greenfoot.getRandomNumber(4) < 3){
+            //Change the portal colours every time
+            //symbolizing different gravities
+            speed = new Modifier("/modifier/speedUp", 3);
+            if(speedType == 0){
+                speedType = 1;
+            }
+            else{
+                speed = new Modifier("/modifier/speedNormal", 3);
+                speedType = 0;
+            }
+            
+            //Create a speed portal above spike tower + specified offset so
+            //it doesnt overlap with the spike tower
+            addObject(speed, 600, y + yOffset);
+        }
+        
+        //Keep same value if a portal wasnt created
+        return speedType;
     }
     
     /**

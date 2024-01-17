@@ -11,6 +11,8 @@ public class Spike extends Actor
 {
     static GreenfootImage[] spikeImages = new GreenfootImage[4];
     static String[] spikeSuffix = {"Up", "Down", "Left", "Right"}; 
+    //Int to increase/decrease scroll speed
+    public static int speed;
     
     /**
      * Spike constructor to scale images to smaller size
@@ -52,7 +54,7 @@ public class Spike extends Actor
      * goes out of screen
      */
     public void scroll(){
-        setLocation(getX() - 5, getY()); //Moves 5 units to the left 
+        setLocation(getX() - 5 - speed, getY()); //Moves 5 units to the left 
     }
     
     /**

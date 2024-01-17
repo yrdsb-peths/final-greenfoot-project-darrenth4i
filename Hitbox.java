@@ -69,6 +69,9 @@ public class Hitbox extends Actor
             world.currentBlocks = 0;
             world.gravityCounter = 0;
             world.wave.gravity = 1;
+            //reset static speed to 0
+            Spike.speed = 0;
+            Modifier.speed = 0;
         }
     }
     
@@ -87,6 +90,17 @@ public class Hitbox extends Actor
             else if(modifier.name.equals("/modifier/normalPortal")){
                 wave.gravity = 1;    
             }    
+            //Change speed of block towers based on modifier touched
+            else if(modifier.name.equals("/modifier/speedUp")){
+                //Speed up obstacles
+                Spike.speed = 2;
+                Modifier.speed = 2;
+            } 
+            else if(modifier.name.equals("/modifier/speedNormal")){
+                //Slow down to normal speed
+                Spike.speed = 0;  
+                Modifier.speed = 0;
+            } 
         }
     }
     

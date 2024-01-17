@@ -11,6 +11,7 @@ public class Modifier extends Button
 {
     //string to hold imgPath
     String name;
+    static int speed;
     /**
      * Act - do whatever the Modifier wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -38,7 +39,7 @@ public class Modifier extends Button
      * goes out of screen
      */
     public void scroll(){
-        setLocation(getX() - 5, getY()); //Moves 5 units to the left 
+        setLocation(getX() - 5 - speed, getY()); //Moves 5 units to the left 
     }
     
     /**
