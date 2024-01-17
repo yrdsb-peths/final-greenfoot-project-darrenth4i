@@ -141,6 +141,7 @@ public class MyWorld extends World
      */
     int limitBlocks = 3; //maximum amount of block towers spawning on screen
     int currentBlocks = 0; //number of block towers on screen
+    int gravityCounter = 0; //keep track of the last gravity portal's colour
     public void createBlock(){
         if(currentBlocks < limitBlocks){
             int y = Greenfoot.getRandomNumber(2); //Choose either 0 or 1
@@ -162,16 +163,16 @@ public class MyWorld extends World
                 addObject(block, 600, ySpawn + offset);
                 //Create a spike on below the block tower
                 createSpike(600, ySpawn + blockHeight + 15, true);
-                //Spawn below spike
-                createPortal(ySpawn + blockHeight + 15, 75);
+                //Spawn portal below spike
+                gravityCounter = createPortal(ySpawn + blockHeight + 15, 75, gravityCounter);
             }
             //Spawning on ground
             else{
                 addObject(block, 600, ySpawn - offset);
                 //Create a spike on top the block tower
                 createSpike(600, ySpawn - blockHeight - 15, false);
-                //Spawn above spike
-                createPortal(ySpawn - blockHeight - 15, -75);
+                //Spawn portal above spike
+                gravityCounter = createPortal(ySpawn - blockHeight - 15, -75, gravityCounter);
             }
             
             currentBlocks++;
@@ -181,13 +182,28 @@ public class MyWorld extends World
     /**
      * Method to spawn gravity changing portal at random
      */
-    public void createPortal(int y, int yOffset){
-        //Once score is over 10, spawn a portal 25% of the time
-        if(score >= 10 && Greenfoot.getRandomNumber(5) == 1){
-            Modifier portal = new Modifier("/modifier/reversePortal", 3);
+    Modifier portal;
+    public int createPortal(int y, int yOffset, int reverseGravity){
+        //Every 10 score, spawn a portal 50% of the time
+        if(score > 0 && score % 10 == 0 && Greenfoot.getRandomNumber(2) == 1){
+            //Change the portal colours every time
+            //symbolizing different gravities
+            portal = new Modifier("/modifier/reversePortal", 3);
+            if(reverseGravity == 0){
+                reverseGravity = 1;
+            }
+            else{
+                portal = new Modifier("/modifier/normalPortal", 3);
+                reverseGravity = 0;
+            }
             
+            //Create a portal above spike tower + specified offset so
+            //it doesnt overlap with the spike tower
             addObject(portal, 600, y + yOffset);
         }
+        
+        //Keep same value if a portal wasnt created
+        return reverseGravity;
     }
     
     int score;

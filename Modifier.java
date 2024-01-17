@@ -24,9 +24,12 @@ public class Modifier extends Button
      * Modifier constructor to find image path based on specified 
      * imgPath and create scaled image
      */
+    //string to hold imgPath
+    String name;
     public Modifier(String imgPath, int scale){
         super(imgPath, scale);
         super.createImage(imgPath, scale);
+        name = imgPath;
     }
     
     
@@ -45,7 +48,6 @@ public class Modifier extends Button
         //Remove block object when it is offscreen and create new block
         if(getX() < 0){
             MyWorld world = (MyWorld) getWorld();
-            world.currentBlocks--;
             world.removeObject(this);
         }
     }
