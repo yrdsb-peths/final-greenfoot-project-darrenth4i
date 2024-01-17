@@ -144,7 +144,7 @@ public class MyWorld extends World
     public void createBlock(){
         if(currentBlocks < limitBlocks){
             int y = Greenfoot.getRandomNumber(2); //Choose either 0 or 1
-            int towerHeight = Greenfoot.getRandomNumber(5) + 1;
+            int towerHeight = Greenfoot.getRandomNumber(5) + 1; //Num from 1-5
             
             //0 * 400 = ceiling or 1 * 400 = ground
             int ySpawn = y * 400;
@@ -162,12 +162,16 @@ public class MyWorld extends World
                 addObject(block, 600, ySpawn + offset);
                 //Create a spike on below the block tower
                 createSpike(600, ySpawn + blockHeight + 15, true);
+                //Spawn below spike
+                createPortal(ySpawn + blockHeight + 15, 75);
             }
             //Spawning on ground
             else{
                 addObject(block, 600, ySpawn - offset);
                 //Create a spike on top the block tower
                 createSpike(600, ySpawn - blockHeight - 15, false);
+                //Spawn above spike
+                createPortal(ySpawn - blockHeight - 15, -75);
             }
             
             currentBlocks++;
@@ -175,8 +179,17 @@ public class MyWorld extends World
     }
     
     /**
-     * Method to display score
+     * Method to spawn gravity changing portal at random
      */
+    public void createPortal(int y, int yOffset){
+        //Once score is over 10, spawn a portal 25% of the time
+        if(score >= 10 && Greenfoot.getRandomNumber(5) == 1){
+            Modifier portal = new Modifier("/modifier/reversePortal", 3);
+            
+            addObject(portal, 600, y + yOffset);
+        }
+    }
+    
     int score;
     /**
      * Method to increase the score by 1
