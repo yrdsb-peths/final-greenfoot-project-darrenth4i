@@ -10,6 +10,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     Label scoreLabel; //Score label object
+    Label highScoreLabel; //Highscore label object
     int waveStartPos = 100;
     Wave wave;
     //variable to switch to different trail colour values 
@@ -35,6 +36,7 @@ public class MyWorld extends World
     Modifier speed;
     
     int score;
+    int highScore;
     /**
      * Constructor for objects of class MyWorld
      */
@@ -67,6 +69,10 @@ public class MyWorld extends World
         //Label to show the score
         scoreLabel = new Label("Score: " + 0, 40);
         addObject(scoreLabel, 85, 30);
+        
+        //Label to show the highscore
+        highScoreLabel = new Label("Best: " + 0, 40);
+        addObject(highScoreLabel, 75, 70);
         
         //Trail will always spawn behind wave, looks better
         setPaintOrder(Hitbox.class, Wave.class, Trail.class);
