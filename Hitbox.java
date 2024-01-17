@@ -22,6 +22,7 @@ public class Hitbox extends Actor
         followWave();
         hitSpike();
         toggleHitbox();
+        hitModifier();
     }
     
     /**

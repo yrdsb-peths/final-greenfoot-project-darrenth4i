@@ -232,7 +232,7 @@ public class MyWorld extends World
         {
             limitSpikes++;
             limitBlocks++;
-            spawnCD -= 10;
+            spawnCD -= 7;
         }
     }
 }
