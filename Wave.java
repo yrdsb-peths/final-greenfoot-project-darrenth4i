@@ -34,7 +34,6 @@ public class Wave extends Actor
         click(icon);
         wavePosX = getX();
         wavePosY = getY();
-        touchPortal();
     }
     
     /**
@@ -99,22 +98,5 @@ public class Wave extends Actor
             }
         }
     }
-    
-    /**
-     * Method to detect when wave touches gravity portal and switch
-     * gravity accordingly
-     */
-    public void touchPortal(){
-        if(isTouching(Modifier.class)){
-            //get the specific modifier portal that touches wave
-            Modifier portal = (Modifier)getOneIntersectingObject(Modifier.class);
-            //Change gravity based on portal touched
-            if(portal.name.equals("/modifier/reversePortal")){
-                gravity = -1;
-            }
-            else if(portal.name.equals("/modifier/normalPortal")){
-                gravity = 1;    
-            }    
-        }
-    }
+
 }

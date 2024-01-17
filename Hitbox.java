@@ -10,7 +10,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Hitbox extends Actor
 {
     GreenfootImage hitbox = new GreenfootImage("images/waveHitbox.png");
-    
+    //Wave object that hitbox follows
+    Wave wave;
     /**
      * Act - do whatever the Hitbox wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -37,7 +38,7 @@ public class Hitbox extends Actor
      */
     public void followWave(){
         //Create an object for the hitbox that touches the wave
-        Wave wave = (Wave)getOneIntersectingObject(Wave.class);
+        wave = (Wave)getOneIntersectingObject(Wave.class);
         //Since Hitbox spawns with Wave, it touches at beginning of program
         if(isTouching(Wave.class)){
             //Update location to follow wave
@@ -67,6 +68,24 @@ public class Hitbox extends Actor
             world.currentBlocks = 0;
             world.gravityCounter = 0;
             world.wave.gravity = 1;
+        }
+    }
+    
+    /**
+     * Method to detect when wave touches a modifier and switch
+     * physics accordingly
+     */
+    public void hitModifier(){
+        if(isTouching(Modifier.class)){
+            //get the specific modifier portal that touches wave
+            Modifier modifier = (Modifier)getOneIntersectingObject(Modifier.class);
+            //Change gravity based on portal touched
+            if(modifier.name.equals("/modifier/reversePortal")){
+                wave.gravity = -1;
+            }
+            else if(modifier.name.equals("/modifier/normalPortal")){
+                wave.gravity = 1;    
+            }    
         }
     }
     
