@@ -123,10 +123,17 @@ public class MyWorld extends World
         //Remove spike object when it is offscreen and create new spike
         if(wave.pressed && !touchingGroundOrCeiling){
             Trail trail = new Trail(2 + colour);
+            //Change trail if gravity is upside down
+            if(wave.gravity == -1){
+                trail = new Trail(0 + colour);
+            }
             addObject(trail, wave.wavePosX, wave.wavePosY);
         }
         if(!wave.pressed && !touchingGroundOrCeiling){
             Trail trail = new Trail(0 + colour);
+            if(wave.gravity == -1){
+                trail = new Trail(2 + colour);
+            }
             addObject(trail, wave.wavePosX, wave.wavePosY);
         }
         

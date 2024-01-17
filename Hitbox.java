@@ -64,6 +64,7 @@ public class Hitbox extends Actor
             world.currentSpikes = 0;
             world.limitBlocks = 3;
             world.currentBlocks = 0;
+            world.wave.gravity = 1;
         }
     }
     
