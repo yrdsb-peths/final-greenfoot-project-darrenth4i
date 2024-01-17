@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Title screen to introduce player to the game
  * 
  * @author Darren
- * @version 12/31/23
+ * @version 15 January 2024
  */
 public class TitleScreen extends World
 {

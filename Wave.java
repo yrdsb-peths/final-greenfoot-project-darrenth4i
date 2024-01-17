@@ -18,12 +18,17 @@ public class Wave extends Actor
     int wavePosY; //Current wave y position
     //Variable to change the index of waveAnimation -> different icons
     int icon; 
+    //int to change what gravity the wave is 
+    int gravity = 1;
+    //speed wave goes up and down
+    int speed = 4;
     public void act()
     {
         // Add your action code here.
         click(icon);
         wavePosX = getX();
         wavePosY = getY();
+        touchPortal();
     }
     
     //Array for the wave images
@@ -59,14 +64,25 @@ public class Wave extends Actor
         
         //When player is clicking, wave moves up
         if(pressed){
-            setImage(waveAnimation[2 + icon]); //Wave icon up image
-            setLocation(getX(), getY() - 4);
+            if(gravity == 1){
+                setImage(waveAnimation[2 + icon]); //Wave icon up image
+            }
+            else{
+                setImage(waveAnimation[0 + icon]); //Wave icon down image
+            }
+            
+            setLocation(getX(), getY() - (speed * gravity));
             
         }
         //When player lets go, wave moves down
         if(!pressed){
-            setImage(waveAnimation[0 + icon]); //Wave icon down image
-            setLocation(getX(), getY() + 4);
+            if(gravity == 1){
+                setImage(waveAnimation[0 + icon]); //Wave icon down image
+            }
+            else{
+                setImage(waveAnimation[2 + icon]); //Wave icon up image
+            }
+            setLocation(getX(), getY() + (speed * gravity));
         }
         
         //Reset wave to idle image when it is touching the floor or ceiling
@@ -82,4 +98,21 @@ public class Wave extends Actor
         }
     }
     
+    /**
+     * Method to detect when wave touches gravity portal and switch
+     * gravity accordingly
+     */
+    public void touchPortal(){
+        if(isTouching(Modifier.class)){
+            //get the specific modifier portal that touches wave
+            Modifier portal = (Modifier)getOneIntersectingObject(Modifier.class);
+            //Change gravity based on portal touched
+            if(portal.name.equals("/modifier/reversePortal")){
+                gravity = -1;
+            }
+            else if(portal.name.equals("/modifier/normalPortal")){
+                gravity = 1;    
+            }    
+        }
+    }
 }
