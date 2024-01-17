@@ -27,15 +27,17 @@ public class OptionScreen extends World
     
     int colour;
     int icon;
+    int highScore;
     
     //col keeps track of selected colour trail/icon
-    public OptionScreen(int col, int iconOffset)
+    public OptionScreen(int col, int iconOffset, int hiScore)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
         
         colour = col;
         icon = iconOffset;
+        highScore = hiScore;
         
         createButtons();
         
@@ -75,8 +77,8 @@ public class OptionScreen extends World
     public void pressed(){
         //Each if statement checks if mouse clicks on the button's image
         //Exit to title screen from the options screen
-        if(Greenfoot.mouseClicked(exit)){
-            TitleScreen titleWorld = new TitleScreen(colour, icon);
+        if(Greenfoot.mouseClicked(exit) || Greenfoot.isKeyDown("escape")){
+            TitleScreen titleWorld = new TitleScreen(colour, icon, highScore);
             Greenfoot.setWorld(titleWorld);
         }
         //Since there are three different wave trails

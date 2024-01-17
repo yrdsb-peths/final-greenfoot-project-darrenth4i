@@ -21,6 +21,8 @@ public class TitleScreen extends World
     //offset but for wave icon
     //0 = default, 3 = kite icon, 6 = taser icon
     int icon = 0;
+    //Highscore value
+    int highScore = 0;
     public TitleScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -37,13 +39,14 @@ public class TitleScreen extends World
      * Overloaded constructor that takes in colour input from
      * user changing colours/icons in option screen
      */
-    public TitleScreen(int col, int iconOffset)
+    public TitleScreen(int col, int iconOffset, int hiScore)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
         
         colour = col;
         icon = iconOffset;
+        highScore = hiScore;
         
         play = new Button("play", 4);
         addObject(play, 250, 250);
@@ -65,13 +68,13 @@ public class TitleScreen extends World
         //E.g. play button is clicked so it switches to game world
         if(Greenfoot.mouseClicked(play)){
             //Pass user chosen colour to game world 
-            MyWorld gameWorld = new MyWorld(colour, icon);
+            MyWorld gameWorld = new MyWorld(colour, icon, highScore);
             Greenfoot.setWorld(gameWorld);
         }
         //Go to options screen from title screen
         else if(Greenfoot.mouseClicked(options)){
             //Pass user chosen colour to option world 
-            OptionScreen optionWorld = new OptionScreen(colour, icon);
+            OptionScreen optionWorld = new OptionScreen(colour, icon, highScore);
             Greenfoot.setWorld(optionWorld);
         }
     }

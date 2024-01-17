@@ -10,11 +10,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     Label scoreLabel; //Score label object
+    Label highScoreLabel; //Highscore label object
     int waveStartPos = 100;
     Wave wave;
     //variable to switch to different trail colour values 
     //-> black = 0 -> blue = 3 -> red = 6
-    int colour; 
+    int colour;
+    //variable to switch to different wave icon values 
+    //-> default = 0 -> kite = 3 -> taser = 6
+    int icon;
     
     Background bg1 = new Background();
     Background bg2 = new Background();
@@ -35,16 +39,22 @@ public class MyWorld extends World
     Modifier speed;
     
     int score;
+    int highScore;
+    
+    //Button to exit back to title screen
+    Button exit;
     /**
      * Constructor for objects of class MyWorld
      */
-    public MyWorld(int col, int icon)
+    public MyWorld(int col, int ic, int hiScore)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1, false);
         
         //set trail index offset
         colour = col;
+        icon = ic;
+        highScore = hiScore;
         
         //Create two Background objects that will loop infinitely
         bg1.setOtherBackground(bg2);
@@ -68,14 +78,23 @@ public class MyWorld extends World
         scoreLabel = new Label("Score: " + 0, 40);
         addObject(scoreLabel, 85, 30);
         
+        //Label to show the highscore
+        highScoreLabel = new Label("Best: " + highScore, 40);
+        addObject(highScoreLabel, 75, 70);
+        
         //Trail will always spawn behind wave, looks better
         setPaintOrder(Hitbox.class, Wave.class, Trail.class);
+        
+        //Button to exit back to title screen        
+        exit = new Button("exit", 8);
+        addObject(exit, 575, 25);
     }
     
     /**
      * Method to spawn in obstacles constantly
      */
     public void act(){
+        buttonPressed();
         trailTimer();
         if(spawnBlockTimer.millisElapsed() < spawnCD){
             return;
@@ -83,6 +102,18 @@ public class MyWorld extends World
         spawnBlockTimer.mark();
         //Only create a block tower once spawn cooldown is over
         createBlock();
+    }
+    
+    /**
+     * Method to exit to title screen while keeping
+     * track of important variables like customizations/high score
+     */
+    public void buttonPressed(){
+        //Exit to title screen from the options screen
+        if(Greenfoot.mouseClicked(exit) || Greenfoot.isKeyDown("escape")){
+            TitleScreen titleWorld = new TitleScreen(colour, icon, highScore);
+            Greenfoot.setWorld(titleWorld);
+        }
     }
     
     /**

@@ -57,6 +57,13 @@ public class Hitbox extends Actor
         if(isTouching(Spike.class)){ 
             removeTouching(Spike.class);
             MyWorld world = (MyWorld) getWorld();
+            
+            //Update high score
+            if(world.score > world.highScore){
+                world.highScore = world.score;
+                world.highScoreLabel.setValue("Best: " + world.score); //update score
+            }
+            
             //Remove objects and reset variables like score/spawn cooldown
             world.removeObjects(world.getObjects(Spike.class));
             world.removeObjects(world.getObjects(Modifier.class));
@@ -72,6 +79,7 @@ public class Hitbox extends Actor
             //reset static speed to 0
             Spike.speed = 0;
             Modifier.speed = 0;
+            
         }
     }
     
