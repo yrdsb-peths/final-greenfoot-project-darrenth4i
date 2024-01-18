@@ -80,6 +80,7 @@ public class OptionScreen extends World
         if(Greenfoot.mouseClicked(exit) || Greenfoot.isKeyDown("escape")){
             TitleScreen titleWorld = new TitleScreen(colour, icon, highScore);
             Greenfoot.setWorld(titleWorld);
+            Greenfoot.playSound("exitClick.mp3");
         }
         //Since there are three different wave trails
         //as animation, the colour variable offsets image index by 0/3/6

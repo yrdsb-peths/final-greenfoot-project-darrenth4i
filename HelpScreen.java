@@ -60,6 +60,7 @@ public class HelpScreen extends World
         if(Greenfoot.mouseClicked(exit) || Greenfoot.isKeyDown("escape")){
             TitleScreen titleWorld = new TitleScreen(colour, icon, highScore);
             Greenfoot.setWorld(titleWorld);
+            Greenfoot.playSound("exitClick.mp3");
         }
         
         //Check if user has clicked anywhere on screen to move to next image

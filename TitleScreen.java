@@ -84,22 +84,26 @@ public class TitleScreen extends World
             //Pass user chosen colour, icon and highscore to game world 
             MyWorld gameWorld = new MyWorld(colour, icon, highScore);
             Greenfoot.setWorld(gameWorld);
+            Greenfoot.playSound("buttonClick.mp3");
         }
         //Go to options screen from title screen
         else if(Greenfoot.mouseClicked(options)){
             //Pass user chosen colour, icon and highscore to option world 
             OptionScreen optionWorld = new OptionScreen(colour, icon, highScore);
             Greenfoot.setWorld(optionWorld);
+            Greenfoot.playSound("buttonClick.mp3");
         }
         else if(Greenfoot.mouseClicked(question)){
             //Pass user chosen colour, icon and highscore to help world 
             HelpScreen helpWorld = new HelpScreen(colour, icon, highScore);
             Greenfoot.setWorld(helpWorld);
+            Greenfoot.playSound("buttonClick.mp3");
         }
         else if(Greenfoot.mouseClicked(achievement)){
             //Pass user chosen colour, icon and highscore to achievement world 
             AchievementScreen achievementWorld = new AchievementScreen(colour, icon, highScore);
             Greenfoot.setWorld(achievementWorld);
+            Greenfoot.playSound("buttonClick.mp3");
         }
     }
     

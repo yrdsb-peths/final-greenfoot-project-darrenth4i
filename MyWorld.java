@@ -113,6 +113,7 @@ public class MyWorld extends World
         if(Greenfoot.mouseClicked(exit) || Greenfoot.isKeyDown("escape")){
             TitleScreen titleWorld = new TitleScreen(colour, icon, highScore);
             Greenfoot.setWorld(titleWorld);
+            Greenfoot.playSound("exitClick.mp3");
         }
     }
     
