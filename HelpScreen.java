@@ -54,19 +54,19 @@ public class HelpScreen extends World
     }
     
     public void act(){
-        clicked(4, bg);
+        clicked(4, bg, helpSong);
     }
     
     /**
      * Method to switch image to new image when mouse clicked
-     */
-    public void clicked(int limit, GreenfootImage[] bg){
+     */ 
+    public void clicked(int limit, GreenfootImage[] bg, GreenfootSound song){
         //Move back to title screen
         if(Greenfoot.mouseClicked(exit) || Greenfoot.isKeyDown("escape")){
             TitleScreen titleWorld = new TitleScreen(colour, icon, highScore);
             Greenfoot.setWorld(titleWorld);
             Greenfoot.playSound("exitClick.mp3");
-            helpSong.pause();
+            song.pause();
         }
         
         //Check if user has clicked anywhere on screen to move to next image

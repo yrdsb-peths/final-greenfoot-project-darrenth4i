@@ -93,7 +93,7 @@ public class Hitbox extends Actor
             //Reset song to beginning
             world.gameSong.stop();
             world.gameSong.playLoop();
-            
+              
         }
     }
     

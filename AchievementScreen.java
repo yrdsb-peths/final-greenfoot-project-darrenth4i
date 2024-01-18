@@ -17,7 +17,10 @@ public class AchievementScreen extends HelpScreen
     //Button objects for all 6 achievements
     Button ach1;
     Button ach2;
-    Button ach3;
+    Button ach3; 
+    
+    //Song that plays in achievement screen
+    GreenfootSound achievementSong = new GreenfootSound("achievement.mp3");
     /**
      * Constructor for objects of class AchievementScreen.
      * 
@@ -42,10 +45,14 @@ public class AchievementScreen extends HelpScreen
         ach3 = new Button("question", 8);
         addObject(ach3, 150, 330);
         
+        super.helpSong.pause();
+        
+        achievementSong.setVolume(45);
+        achievementSong.playLoop();
     }
     
     public void act(){
-        super.clicked(1, bg);
+        super.clicked(1, bg, achievementSong);
         cheat();
         checkScore();
     }
