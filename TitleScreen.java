@@ -25,6 +25,8 @@ public class TitleScreen extends World
     int icon = 0;
     //Highscore value
     int highScore = 0;
+    
+    GreenfootSound song = new GreenfootSound("themeSong.mp3");
     public TitleScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -41,6 +43,9 @@ public class TitleScreen extends World
         
         achievement = new Button("achievement", 4);
         addObject(achievement, 350, 310);
+        
+        song.setVolume(50);
+        song.play();
     }
     
     /**
@@ -67,6 +72,9 @@ public class TitleScreen extends World
         
         achievement = new Button("achievement", 4);
         addObject(achievement, 350, 310);
+        
+        song.setVolume(50);
+        song.play();
     }
     
     public void act(){
@@ -84,7 +92,10 @@ public class TitleScreen extends World
             //Pass user chosen colour, icon and highscore to game world 
             MyWorld gameWorld = new MyWorld(colour, icon, highScore);
             Greenfoot.setWorld(gameWorld);
+            //Play button click sfx
             Greenfoot.playSound("buttonClick.mp3");
+            //prevent song from playing multiple times in different worlds
+            song.pause();
         }
         //Go to options screen from title screen
         else if(Greenfoot.mouseClicked(options)){
@@ -92,18 +103,21 @@ public class TitleScreen extends World
             OptionScreen optionWorld = new OptionScreen(colour, icon, highScore);
             Greenfoot.setWorld(optionWorld);
             Greenfoot.playSound("buttonClick.mp3");
+            song.pause();
         }
         else if(Greenfoot.mouseClicked(question)){
             //Pass user chosen colour, icon and highscore to help world 
             HelpScreen helpWorld = new HelpScreen(colour, icon, highScore);
             Greenfoot.setWorld(helpWorld);
             Greenfoot.playSound("buttonClick.mp3");
+            song.pause();
         }
         else if(Greenfoot.mouseClicked(achievement)){
             //Pass user chosen colour, icon and highscore to achievement world 
             AchievementScreen achievementWorld = new AchievementScreen(colour, icon, highScore);
             Greenfoot.setWorld(achievementWorld);
             Greenfoot.playSound("buttonClick.mp3");
+            song.pause();
         }
     }
     

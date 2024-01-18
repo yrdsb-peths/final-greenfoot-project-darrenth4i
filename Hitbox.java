@@ -15,6 +15,7 @@ public class Hitbox extends Actor
     
     GreenfootSound zoom = new GreenfootSound("zoom.mp3");
     GreenfootSound slow = new GreenfootSound("slow.mp3");
+    GreenfootSound gravity = new GreenfootSound("gravity.mp3");
     
     /**
      * Act - do whatever the Hitbox wants to do. This method is called whenever
@@ -39,6 +40,7 @@ public class Hitbox extends Actor
         
         zoom.setVolume(45);
         slow.setVolume(30);
+        gravity.setVolume(45);
     }
     
     /**
@@ -103,9 +105,11 @@ public class Hitbox extends Actor
             //Change gravity based on portal touched
             if(modifier.name.equals("/modifier/reversePortal")){
                 wave.gravity = -1;
+                gravity.play();
             }
             else if(modifier.name.equals("/modifier/normalPortal")){
-                wave.gravity = 1;    
+                wave.gravity = 1;
+                gravity.play();
             }    
             //Change speed of block towers based on modifier touched
             if(modifier.name.equals("/modifier/speedUp")){
