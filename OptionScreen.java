@@ -29,6 +29,9 @@ public class OptionScreen extends World
     int icon;
     int highScore;
     
+    //Song that plays while in options screen
+    GreenfootSound optionSong = new GreenfootSound("options.mp3");
+    
     //col keeps track of selected colour trail/icon
     public OptionScreen(int col, int iconOffset, int hiScore)
     {    
@@ -64,6 +67,9 @@ public class OptionScreen extends World
         else{
             taserWave.createImage("taserCheck", 4);
         }
+        
+        optionSong.setVolume(60);
+        optionSong.playLoop();
     }
     
     public void act(){
@@ -81,6 +87,7 @@ public class OptionScreen extends World
             TitleScreen titleWorld = new TitleScreen(colour, icon, highScore);
             Greenfoot.setWorld(titleWorld);
             Greenfoot.playSound("exitClick.mp3");
+            optionSong.pause();
         }
         //Since there are three different wave trails
         //as animation, the colour variable offsets image index by 0/3/6
@@ -89,7 +96,7 @@ public class OptionScreen extends World
             colour = 0;
             //Change red colour image to add checkmark and remove it from
             //The other selected colours
-            blackTrail.createImage("blackCheck", 2);
+            blackTrail.createImage("blackCheck", 2); 
             resetChecked(redTrail, "red", blueTrail, "blue", 2);
         }
         else if(Greenfoot.mouseClicked(blueTrail)){

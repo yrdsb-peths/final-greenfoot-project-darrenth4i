@@ -50,7 +50,7 @@ public class TitleScreen extends World
         
         if(started){
             song.setVolume(50);
-            song.play();
+            song.playLoop();
         }
             
     }
@@ -82,14 +82,17 @@ public class TitleScreen extends World
         
         if(started){
             song.setVolume(50);
-            song.play();
+            song.playLoop();
         }
     }
     
+    /**
+     * Method to make sure song only plays when run is pressed by user
+     */
     public void started(){
         started = true;
         song.setVolume(50);
-        song.play();
+        song.playLoop();
     }
     
     public void act(){

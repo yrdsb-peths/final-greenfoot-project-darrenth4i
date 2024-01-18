@@ -24,6 +24,8 @@ public class HelpScreen extends World
     //Button to exit to title screen
     Button exit;
     
+    //Song playing during help screen
+    GreenfootSound helpSong = new GreenfootSound("help.mp3");
     /**
      * Constructor for objects of class HelpScreen.
      * 
@@ -46,6 +48,9 @@ public class HelpScreen extends World
         
         exit = new Button("exit", 8);
         addObject(exit, 25, 25);
+        
+        helpSong.setVolume(60);
+        helpSong.playLoop();
     }
     
     public void act(){
@@ -61,6 +66,7 @@ public class HelpScreen extends World
             TitleScreen titleWorld = new TitleScreen(colour, icon, highScore);
             Greenfoot.setWorld(titleWorld);
             Greenfoot.playSound("exitClick.mp3");
+            helpSong.pause();
         }
         
         //Check if user has clicked anywhere on screen to move to next image
