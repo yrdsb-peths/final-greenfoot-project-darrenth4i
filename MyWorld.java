@@ -260,8 +260,8 @@ public class MyWorld extends World
      * Method to spawn speed changing portal at random
      */
     public int createSpeed(int y, int yOffset, int speedType){
-        //Every 15 score, spawn a portal 75% of the time
-        if(score > 0 && score % 15 == 0 && Greenfoot.getRandomNumber(4) < 3){
+        //Every 13 score, spawn a portal 75% of the time
+        if(score > 0 && score % 13 == 0 && Greenfoot.getRandomNumber(4) < 3){
             //Change the portal colours every time
             //symbolizing different gravities
             speed = new Modifier("/modifier/speedUp", 3);

@@ -99,7 +99,7 @@ public class Hitbox extends Actor
                 wave.gravity = 1;    
             }    
             //Change speed of block towers based on modifier touched
-            else if(modifier.name.equals("/modifier/speedUp")){
+            if(modifier.name.equals("/modifier/speedUp")){
                 //Speed up obstacles
                 Spike.speed = 2;
                 Modifier.speed = 2;

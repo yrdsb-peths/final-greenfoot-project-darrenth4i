@@ -48,13 +48,13 @@ public class HelpScreen extends World
     }
     
     public void act(){
-        clicked();
+        clicked(3, bg);
     }
     
     /**
      * Method to switch image to new image when mouse clicked
      */
-    public void clicked(){
+    public void clicked(int limit, GreenfootImage[] bg){
         //Move back to title screen
         if(Greenfoot.mouseClicked(exit) || Greenfoot.isKeyDown("escape")){
             TitleScreen titleWorld = new TitleScreen(colour, icon, highScore);
@@ -72,7 +72,7 @@ public class HelpScreen extends World
         
         //Prevent index out of bounds error by resetting to first page
         //after fourth page is clicked
-        if(current > 3){
+        if(current > limit){
             current = 0;
         }
         
