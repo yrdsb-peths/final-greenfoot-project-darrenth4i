@@ -20,6 +20,9 @@ public class HelpScreen extends World
     //Integer to keep track of current page
     int current;
     
+    //Button to exit to title screen
+    Button exit;
+    
     /**
      * Constructor for objects of class HelpScreen.
      * 
@@ -39,6 +42,9 @@ public class HelpScreen extends World
         }
         //Show first image
         setBackground(bg[current]);
+        
+        exit = new Button("exit", 8);
+        addObject(exit, 25, 25);
     }
     
     public void act(){
@@ -49,7 +55,13 @@ public class HelpScreen extends World
      * Method to switch image to new image when mouse clicked
      */
     public void clicked(){
-        //Check if user has clicked anywhere on screen
+        //Move back to title screen
+        if(Greenfoot.mouseClicked(exit) || Greenfoot.isKeyDown("escape")){
+            TitleScreen titleWorld = new TitleScreen(colour, icon, highScore);
+            Greenfoot.setWorld(titleWorld);
+        }
+        
+        //Check if user has clicked anywhere on screen to move to next image
         if(Greenfoot.mouseClicked(null) && !pressed){
             pressed = true;
             current++;

@@ -53,10 +53,13 @@ public class TitleScreen extends World
         highScore = hiScore;
         
         play = new Button("play", 4);
-        addObject(play, 250, 250);
+        addObject(play, 250, 220);
         
         options = new Button("options", 3);
-        addObject(options, 350, 250);
+        addObject(options, 350, 220);
+        
+        question = new Button("question", 7);
+        addObject(question, 300, 310);
     }
     
     public void act(){
