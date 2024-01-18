@@ -44,8 +44,16 @@ public class MyWorld extends World
     //Boolean to check if portal has already been spawned when score % 10 == 0 
     boolean spawnedPortal;
     
+    //Boolean to run code if user is dead
+    boolean onDeath;
+    //Boolean to make sure endScreen is only added once
+    boolean addOnce;
+    
     //Button to exit back to title screen
     Button exit;
+    
+    //Button object to represent endscreen on death
+    Button endScreen;
     
     //song that plays in the game world
     GreenfootSound gameSong = new GreenfootSound("game.mp3");
@@ -104,14 +112,18 @@ public class MyWorld extends World
      * Method to spawn in obstacles constantly
      */
     public void act(){
-        buttonPressed();
-        trailTimer();
-        if(spawnBlockTimer.millisElapsed() < spawnCD){
-            return;
+        death();
+        
+        if(!onDeath){
+            buttonPressed();
+            trailTimer();
+            if(spawnBlockTimer.millisElapsed() < spawnCD){
+                return;
+            }
+            spawnBlockTimer.mark();
+            //Only create a block tower once spawn cooldown is over
+            createBlock();
         }
-        spawnBlockTimer.mark();
-        //Only create a block tower once spawn cooldown is over
-        createBlock();
     }
     
     /**
@@ -128,13 +140,30 @@ public class MyWorld extends World
         }
     }
     
+    public void death(){
+        //Show image until r is pressed 
+        if(onDeath){
+            gameSong.pause();
+            if(!addOnce){
+                addOnce = true;
+                endScreen = new Button("endScreen", 1); 
+                addObject(endScreen, 300, 200);
+            }
+                 
+            if(Greenfoot.isKeyDown("r")){
+                MyWorld gameWorld = new MyWorld(colour, icon, highScore);
+                Greenfoot.setWorld(gameWorld); 
+            }
+        }
+    }
+    
     /**
      * Method to spawn in a trail object behind wave
      * every 25 ms
      */
     public void trailTimer(){
         if(spawnTrailTimer.millisElapsed() < 25){
-            return;
+            return; 
         }
         spawnTrailTimer.mark();
         createTrail(colour);

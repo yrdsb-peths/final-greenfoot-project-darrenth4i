@@ -87,6 +87,8 @@ public class Hitbox extends Actor
             world.currentBlocks = 0;
             world.gravityCounter = 0;
             world.wave.gravity = 1;
+            //Set player has died to true
+            world.onDeath = true;
             //reset static speed to 0
             Spike.speed = 0;
             Modifier.speed = 0;
@@ -94,7 +96,7 @@ public class Hitbox extends Actor
             world.gameSong.stop();
             world.gameSong.playLoop();
               
-        }
+        } 
     }
     
     /**
