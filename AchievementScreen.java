@@ -64,9 +64,12 @@ public class AchievementScreen extends HelpScreen
             else if(super.highScore >= 10){
                 ach1.createImage("face0", 8);
                 ach2.createImage("face1", 9);
+                ach3.createImage("question", 8);
             }
             else if(super.highScore >= 1){
                 ach1.createImage("face0", 8);
+                ach2.createImage("question", 8);
+                ach3.createImage("question", 8);
             }
             else{
                 ach1.createImage("question", 8);
@@ -83,9 +86,12 @@ public class AchievementScreen extends HelpScreen
             else if(super.highScore >= 250){
                 ach1.createImage("face3", 5);
                 ach2.createImage("face4", 11);
+                ach3.createImage("question", 8);
             }
             else if(super.highScore >= 100){
                 ach1.createImage("face3", 5);
+                ach2.createImage("question", 8);
+                ach3.createImage("question", 8);
             }
             else{
                 ach1.createImage("question", 8);
