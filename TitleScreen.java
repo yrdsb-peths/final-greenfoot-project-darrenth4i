@@ -27,6 +27,10 @@ public class TitleScreen extends World
     int highScore = 0;
     
     GreenfootSound song = new GreenfootSound("themeSong.mp3");
+
+    //Variable to make sure music only plays when run is clicked
+    static boolean started;
+    
     public TitleScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -44,8 +48,11 @@ public class TitleScreen extends World
         achievement = new Button("achievement", 4);
         addObject(achievement, 350, 310);
         
-        song.setVolume(50);
-        song.play();
+        if(started){
+            song.setVolume(50);
+            song.play();
+        }
+            
     }
     
     /**
@@ -73,6 +80,14 @@ public class TitleScreen extends World
         achievement = new Button("achievement", 4);
         addObject(achievement, 350, 310);
         
+        if(started){
+            song.setVolume(50);
+            song.play();
+        }
+    }
+    
+    public void started(){
+        started = true;
         song.setVolume(50);
         song.play();
     }
