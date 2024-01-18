@@ -46,6 +46,10 @@ public class MyWorld extends World
     
     //Button to exit back to title screen
     Button exit;
+    
+    //song that plays in the game world
+    GreenfootSound gameSong = new GreenfootSound("game.mp3");
+    
     /**
      * Constructor for objects of class MyWorld
      */
@@ -91,6 +95,9 @@ public class MyWorld extends World
         //Button to exit back to title screen        
         exit = new Button("exit", 8);
         addObject(exit, 575, 25);
+        
+        gameSong.setVolume(60);
+        gameSong.playLoop();
     }
     
     /**
@@ -117,6 +124,7 @@ public class MyWorld extends World
             TitleScreen titleWorld = new TitleScreen(colour, icon, highScore);
             Greenfoot.setWorld(titleWorld);
             Greenfoot.playSound("exitClick.mp3");
+            gameSong.pause();
         }
     }
     

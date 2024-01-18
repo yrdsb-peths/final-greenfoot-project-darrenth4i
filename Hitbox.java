@@ -90,6 +90,9 @@ public class Hitbox extends Actor
             //reset static speed to 0
             Spike.speed = 0;
             Modifier.speed = 0;
+            //Reset song to beginning
+            world.gameSong.stop();
+            world.gameSong.playLoop();
             
         }
     }
