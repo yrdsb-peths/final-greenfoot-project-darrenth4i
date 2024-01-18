@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class HelpScreen here.
+ * HelpScreen helps the user understand different objects in the game
+ * and the controls as well as the objective of the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Darren
+ * @version 17 January 2024
  */
 public class HelpScreen extends World
 {
