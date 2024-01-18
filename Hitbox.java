@@ -58,6 +58,8 @@ public class Hitbox extends Actor
             removeTouching(Spike.class);
             MyWorld world = (MyWorld) getWorld();
             
+            Greenfoot.playSound("death.mp3");
+            
             //Update high score
             if(world.score > world.highScore){
                 world.highScore = world.score;

@@ -41,6 +41,9 @@ public class MyWorld extends World
     int score;
     int highScore;
     
+    //Boolean to check if portal has already been spawned when score % 10 == 0 
+    boolean spawnedPortal;
+    
     //Button to exit back to title screen
     Button exit;
     /**
@@ -236,10 +239,14 @@ public class MyWorld extends World
      */
     public int createPortal(int y, int yOffset, int reverseGravity){
         //Every 10 score, spawn a portal 50% of the time
-        if(score > 0 && score % 10 == 0 && Greenfoot.getRandomNumber(2) == 1){
+        if(!spawnedPortal && score > 0 && score % 10 == 0 && Greenfoot.getRandomNumber(2) == 1){
             //Change the portal colours every time
             //symbolizing different gravities
             portal = new Modifier("/modifier/reversePortal", 3);
+            
+            //spawn portal only once
+            spawnedPortal = true;
+            
             if(reverseGravity == 0){
                 reverseGravity = 1;
             }
@@ -251,6 +258,9 @@ public class MyWorld extends World
             //Create a portal above spike tower + specified offset so
             //it doesnt overlap with the spike tower
             addObject(portal, 600, y + yOffset);
+        }
+        else if(score % 10 != 0){
+            spawnedPortal = false;
         }
         
         //Keep same value if a portal wasnt created
