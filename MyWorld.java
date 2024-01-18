@@ -144,7 +144,7 @@ public class MyWorld extends World
         //Show image until r is pressed 
         if(onDeath){
             gameSong.pause();
-            if(!addOnce){
+            if(!addOnce){ 
                 addOnce = true;
                 endScreen = new Button("endScreen", 1); 
                 addObject(endScreen, 300, 200);
