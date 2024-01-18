@@ -12,6 +12,10 @@ public class Hitbox extends Actor
     GreenfootImage hitbox = new GreenfootImage("images/waveHitbox.png");
     //Wave object that hitbox follows
     Wave wave;
+    
+    GreenfootSound zoom = new GreenfootSound("zoom.mp3");
+    GreenfootSound slow = new GreenfootSound("slow.mp3");
+    
     /**
      * Act - do whatever the Hitbox wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -32,6 +36,9 @@ public class Hitbox extends Actor
         hitbox.scale(hitbox.getWidth() / 10, hitbox.getHeight() / 15);
         hitbox.setTransparency(0); //make hitbox invisible
         setImage(hitbox);
+        
+        zoom.setVolume(45);
+        slow.setVolume(30);
     }
     
     /**
@@ -105,11 +112,13 @@ public class Hitbox extends Actor
                 //Speed up obstacles
                 Spike.speed = 2;
                 Modifier.speed = 2;
+                zoom.play();
             } 
             else if(modifier.name.equals("/modifier/speedNormal")){
                 //Slow down to normal speed
                 Spike.speed = 0;  
                 Modifier.speed = 0;
+                slow.play();
             } 
         }
     }
