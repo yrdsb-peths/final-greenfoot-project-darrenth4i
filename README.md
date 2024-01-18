@@ -18,6 +18,8 @@ Click the gear button (top right) in game to customize the way your wave trail a
 # Note for Teacher
 There is a trophy button which shows the achievement section of the game (bottom right) that is based off of your high score. When in the achievement world, holding "o" and "p" will automatically change your high score to 1000 to showcase all achievements being unlocked.
 
+To find the array with animations, go to the Wave class and look under the click() method.
+
 # Source for images and SFX
 https://docs.google.com/document/d/1qA984J0w2eXP5sCxQfGSELbMRyGObQWggU2glfUxzlQ/edit?usp=sharing
 
