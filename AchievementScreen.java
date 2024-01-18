@@ -17,7 +17,10 @@ public class AchievementScreen extends HelpScreen
     //Button objects for all 6 achievements
     Button ach1;
     Button ach2;
-    Button ach3;
+    Button ach3; 
+    
+    //Song that plays in achievement screen
+    GreenfootSound achievementSong = new GreenfootSound("achievement.mp3");
     /**
      * Constructor for objects of class AchievementScreen.
      * 
@@ -42,14 +45,22 @@ public class AchievementScreen extends HelpScreen
         ach3 = new Button("question", 8);
         addObject(ach3, 150, 330);
         
+        super.helpSong.pause();
+        
+        achievementSong.setVolume(45);
+        achievementSong.playLoop();
     }
     
     public void act(){
-        super.clicked(1, bg);
+        super.clicked(1, bg, achievementSong);
         cheat();
         checkScore();
     }
     
+    /**
+     * Method to check player's highscore and display
+     * unlocked images accordingly
+     */
     public void checkScore(){
         if(super.current == 0){
             if(super.highScore >= 50){
@@ -60,9 +71,17 @@ public class AchievementScreen extends HelpScreen
             else if(super.highScore >= 10){
                 ach1.createImage("face0", 8);
                 ach2.createImage("face1", 9);
+                ach3.createImage("question", 8);
             }
             else if(super.highScore >= 1){
                 ach1.createImage("face0", 8);
+                ach2.createImage("question", 8);
+                ach3.createImage("question", 8);
+            }
+            else{
+                ach1.createImage("question", 8);
+                ach2.createImage("question", 8);
+                ach3.createImage("question", 8);
             }
         }
         else{
@@ -74,13 +93,24 @@ public class AchievementScreen extends HelpScreen
             else if(super.highScore >= 250){
                 ach1.createImage("face3", 5);
                 ach2.createImage("face4", 11);
+                ach3.createImage("question", 8);
             }
             else if(super.highScore >= 100){
                 ach1.createImage("face3", 5);
+                ach2.createImage("question", 8);
+                ach3.createImage("question", 8);
+            }
+            else{
+                ach1.createImage("question", 8);
+                ach2.createImage("question", 8);
+                ach3.createImage("question", 8);
             }
         }
     }
     
+    /**
+     * Method to add 1000 points to view all achievements immediately
+     */
     public void cheat(){
         if(Greenfoot.isKeyDown("o") && Greenfoot.isKeyDown("p")){
             super.highScore = 1000;

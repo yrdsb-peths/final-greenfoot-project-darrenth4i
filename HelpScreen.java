@@ -13,7 +13,7 @@ public class HelpScreen extends World
     int icon;
     int highScore;
     
-    GreenfootImage[] bg = new GreenfootImage[4];
+    GreenfootImage[] bg = new GreenfootImage[5];
     
     //boolean to keep track of mouse click
     boolean pressed;
@@ -24,6 +24,8 @@ public class HelpScreen extends World
     //Button to exit to title screen
     Button exit;
     
+    //Song playing during help screen
+    GreenfootSound helpSong = new GreenfootSound("help.mp3");
     /**
      * Constructor for objects of class HelpScreen.
      * 
@@ -38,7 +40,7 @@ public class HelpScreen extends World
         highScore = hiScore;
         
         //Create array with four images, each image showing new instructions
-        for(int i = 0; i<4; i++){
+        for(int i = 0; i<5; i++){
             bg[i] = new GreenfootImage("images/help_screen/help" + i + ".png");
         }
         //Show first image
@@ -46,20 +48,25 @@ public class HelpScreen extends World
         
         exit = new Button("exit", 8);
         addObject(exit, 25, 25);
+        
+        helpSong.setVolume(60);
+        helpSong.playLoop();
     }
     
     public void act(){
-        clicked(3, bg);
+        clicked(4, bg, helpSong);
     }
     
     /**
      * Method to switch image to new image when mouse clicked
-     */
-    public void clicked(int limit, GreenfootImage[] bg){
+     */ 
+    public void clicked(int limit, GreenfootImage[] bg, GreenfootSound song){
         //Move back to title screen
         if(Greenfoot.mouseClicked(exit) || Greenfoot.isKeyDown("escape")){
             TitleScreen titleWorld = new TitleScreen(colour, icon, highScore);
             Greenfoot.setWorld(titleWorld);
+            Greenfoot.playSound("exitClick.mp3");
+            song.pause();
         }
         
         //Check if user has clicked anywhere on screen to move to next image

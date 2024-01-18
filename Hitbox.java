@@ -12,6 +12,11 @@ public class Hitbox extends Actor
     GreenfootImage hitbox = new GreenfootImage("images/waveHitbox.png");
     //Wave object that hitbox follows
     Wave wave;
+    
+    GreenfootSound zoom = new GreenfootSound("zoom.mp3");
+    GreenfootSound slow = new GreenfootSound("slow.mp3");
+    GreenfootSound gravity = new GreenfootSound("gravity.mp3");
+    
     /**
      * Act - do whatever the Hitbox wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -32,6 +37,10 @@ public class Hitbox extends Actor
         hitbox.scale(hitbox.getWidth() / 10, hitbox.getHeight() / 15);
         hitbox.setTransparency(0); //make hitbox invisible
         setImage(hitbox);
+        
+        zoom.setVolume(45);
+        slow.setVolume(30);
+        gravity.setVolume(45);
     }
     
     /**
@@ -58,6 +67,8 @@ public class Hitbox extends Actor
             removeTouching(Spike.class);
             MyWorld world = (MyWorld) getWorld();
             
+            Greenfoot.playSound("death.mp3");
+            
             //Update high score
             if(world.score > world.highScore){
                 world.highScore = world.score;
@@ -79,7 +90,10 @@ public class Hitbox extends Actor
             //reset static speed to 0
             Spike.speed = 0;
             Modifier.speed = 0;
-            
+            //Reset song to beginning
+            world.gameSong.stop();
+            world.gameSong.playLoop();
+              
         }
     }
     
@@ -94,20 +108,24 @@ public class Hitbox extends Actor
             //Change gravity based on portal touched
             if(modifier.name.equals("/modifier/reversePortal")){
                 wave.gravity = -1;
+                gravity.play();
             }
             else if(modifier.name.equals("/modifier/normalPortal")){
-                wave.gravity = 1;    
+                wave.gravity = 1;
+                gravity.play();
             }    
             //Change speed of block towers based on modifier touched
             if(modifier.name.equals("/modifier/speedUp")){
                 //Speed up obstacles
                 Spike.speed = 2;
                 Modifier.speed = 2;
+                zoom.play();
             } 
             else if(modifier.name.equals("/modifier/speedNormal")){
                 //Slow down to normal speed
                 Spike.speed = 0;  
                 Modifier.speed = 0;
+                slow.play();
             } 
         }
     }

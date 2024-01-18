@@ -13,6 +13,7 @@ public class Button extends Actor
     //To tell what colour was chosen for wave trail
     int colour;
     GreenfootImage image;
+    
     /**
      * Button constructor to find image path based on specified 
      * imgPath and create scaled image
@@ -29,4 +30,5 @@ public class Button extends Actor
         image.scale(image.getWidth() / scale, image.getHeight() / scale);
         setImage(image);
     }
+    
 }
