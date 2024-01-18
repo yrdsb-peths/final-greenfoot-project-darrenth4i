@@ -15,6 +15,7 @@ public class TitleScreen extends World
     Button play;
     Button options;
     Button question;
+    Button achievement;
     
     //acts as offset to wave trail image index to change colour
     //0 = black, 3 = blue, 6 = red
@@ -36,7 +37,10 @@ public class TitleScreen extends World
         addObject(options, 350, 220);
         
         question = new Button("question", 7);
-        addObject(question, 300, 310);
+        addObject(question, 250, 310);
+        
+        achievement = new Button("achievement", 4);
+        addObject(achievement, 350, 310);
     }
     
     /**
@@ -59,7 +63,10 @@ public class TitleScreen extends World
         addObject(options, 350, 220);
         
         question = new Button("question", 7);
-        addObject(question, 300, 310);
+        addObject(question, 250, 310);
+        
+        achievement = new Button("achievement", 4);
+        addObject(achievement, 350, 310);
     }
     
     public void act(){
@@ -88,6 +95,11 @@ public class TitleScreen extends World
             //Pass user chosen colour, icon and highscore to help world 
             HelpScreen helpWorld = new HelpScreen(colour, icon, highScore);
             Greenfoot.setWorld(helpWorld);
+        }
+        else if(Greenfoot.mouseClicked(achievement)){
+            //Pass user chosen colour, icon and highscore to achievement world 
+            AchievementScreen achievementWorld = new AchievementScreen(colour, icon, highScore);
+            Greenfoot.setWorld(achievementWorld);
         }
     }
     

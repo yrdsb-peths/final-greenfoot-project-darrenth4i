@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class HelpScreen here.
+ * HelpScreen helps the user understand different objects in the game
+ * and the controls as well as the objective of the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Darren
+ * @version 17 January 2024
  */
 public class HelpScreen extends World
 {
@@ -48,13 +49,13 @@ public class HelpScreen extends World
     }
     
     public void act(){
-        clicked();
+        clicked(3, bg);
     }
     
     /**
      * Method to switch image to new image when mouse clicked
      */
-    public void clicked(){
+    public void clicked(int limit, GreenfootImage[] bg){
         //Move back to title screen
         if(Greenfoot.mouseClicked(exit) || Greenfoot.isKeyDown("escape")){
             TitleScreen titleWorld = new TitleScreen(colour, icon, highScore);
@@ -72,7 +73,7 @@ public class HelpScreen extends World
         
         //Prevent index out of bounds error by resetting to first page
         //after fourth page is clicked
-        if(current > 3){
+        if(current > limit){
             current = 0;
         }
         
