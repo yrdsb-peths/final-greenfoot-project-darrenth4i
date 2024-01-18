@@ -13,7 +13,7 @@ public class HelpScreen extends World
     int icon;
     int highScore;
     
-    GreenfootImage[] bg = new GreenfootImage[4];
+    GreenfootImage[] bg = new GreenfootImage[5];
     
     //boolean to keep track of mouse click
     boolean pressed;
@@ -38,7 +38,7 @@ public class HelpScreen extends World
         highScore = hiScore;
         
         //Create array with four images, each image showing new instructions
-        for(int i = 0; i<4; i++){
+        for(int i = 0; i<5; i++){
             bg[i] = new GreenfootImage("images/help_screen/help" + i + ".png");
         }
         //Show first image
@@ -49,7 +49,7 @@ public class HelpScreen extends World
     }
     
     public void act(){
-        clicked(3, bg);
+        clicked(4, bg);
     }
     
     /**
