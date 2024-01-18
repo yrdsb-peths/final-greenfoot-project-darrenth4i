@@ -56,10 +56,10 @@ public class Wave extends Actor
      */
     public void click(int icon){
         
-        if(Greenfoot.mousePressed(world)){
+        if(Greenfoot.mousePressed(world) || Greenfoot.isKeyDown("space")){
             pressed = true;
         } 
-        if(Greenfoot.mouseClicked(world)){
+        if(Greenfoot.mouseClicked(world) || !Greenfoot.isKeyDown("space")){
             pressed = false;
         }
         
