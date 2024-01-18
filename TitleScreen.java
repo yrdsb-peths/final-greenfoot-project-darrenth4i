@@ -14,6 +14,7 @@ public class TitleScreen extends World
      */
     Button play;
     Button options;
+    Button question;
     
     //acts as offset to wave trail image index to change colour
     //0 = black, 3 = blue, 6 = red
@@ -29,10 +30,13 @@ public class TitleScreen extends World
         super(600, 400, 1); 
         
         play = new Button("play", 4);
-        addObject(play, 250, 250);
+        addObject(play, 250, 220);
         
         options = new Button("options", 3);
-        addObject(options, 350, 250);
+        addObject(options, 350, 220);
+        
+        question = new Button("question", 7);
+        addObject(question, 300, 310);
     }
     
     /**
@@ -49,10 +53,13 @@ public class TitleScreen extends World
         highScore = hiScore;
         
         play = new Button("play", 4);
-        addObject(play, 250, 250);
+        addObject(play, 250, 220);
         
         options = new Button("options", 3);
-        addObject(options, 350, 250);
+        addObject(options, 350, 220);
+        
+        question = new Button("question", 7);
+        addObject(question, 300, 310);
     }
     
     public void act(){
@@ -67,15 +74,20 @@ public class TitleScreen extends World
         //Change to specified world when the specific button is clicked
         //E.g. play button is clicked so it switches to game world
         if(Greenfoot.mouseClicked(play)){
-            //Pass user chosen colour to game world 
+            //Pass user chosen colour, icon and highscore to game world 
             MyWorld gameWorld = new MyWorld(colour, icon, highScore);
             Greenfoot.setWorld(gameWorld);
         }
         //Go to options screen from title screen
         else if(Greenfoot.mouseClicked(options)){
-            //Pass user chosen colour to option world 
+            //Pass user chosen colour, icon and highscore to option world 
             OptionScreen optionWorld = new OptionScreen(colour, icon, highScore);
             Greenfoot.setWorld(optionWorld);
+        }
+        else if(Greenfoot.mouseClicked(question)){
+            //Pass user chosen colour, icon and highscore to help world 
+            HelpScreen helpWorld = new HelpScreen(colour, icon, highScore);
+            Greenfoot.setWorld(helpWorld);
         }
     }
     
