@@ -17,6 +17,12 @@ public class TitleScreen extends World
     Button question;
     Button achievement;
     
+    //Labels to differentiate the buttons for user
+    Label playGame;
+    Label customization;
+    Label help;
+    Label achievementScreen;
+    
     //acts as offset to wave trail image index to change colour
     //0 = black, 3 = blue, 6 = red
     int colour = 0;
@@ -36,22 +42,7 @@ public class TitleScreen extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
         
-        play = new Button("play", 4);
-        addObject(play, 250, 220);
-        
-        options = new Button("options", 3);
-        addObject(options, 350, 220);
-        
-        question = new Button("question", 7);
-        addObject(question, 250, 310);
-        
-        achievement = new Button("achievement", 4);
-        addObject(achievement, 350, 310);
-        
-        if(started){
-            song.setVolume(50);
-            song.playLoop();
-        }
+        createObjects();
             
     }
     
@@ -68,6 +59,13 @@ public class TitleScreen extends World
         icon = iconOffset;
         highScore = hiScore;
         
+        createObjects();
+    }
+    
+    /**
+     * Method to create buttons and labels as well as start theme song
+     */
+    public void createObjects(){
         play = new Button("play", 4);
         addObject(play, 250, 220);
         
@@ -75,10 +73,22 @@ public class TitleScreen extends World
         addObject(options, 350, 220);
         
         question = new Button("question", 7);
-        addObject(question, 250, 310);
+        addObject(question, 250, 330);
         
         achievement = new Button("achievement", 4);
-        addObject(achievement, 350, 310);
+        addObject(achievement, 350, 330);
+        
+        playGame = new Label("Play", 30);
+        addObject(playGame, 250, 270);
+        
+        customization = new Label("Customize", 30);
+        addObject(customization, 350, 270);
+        
+        help = new Label("Help", 30);
+        addObject(help, 250, 380);
+        
+        achievementScreen = new Label("Achievements", 25);
+        addObject(achievementScreen, 350, 380);
         
         if(started){
             song.setVolume(50);
